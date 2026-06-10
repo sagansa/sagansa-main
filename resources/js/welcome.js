@@ -77,21 +77,26 @@ const observer = new IntersectionObserver((entries) => {
 
 animateElements.forEach(el => observer.observe(el));
 
-// Smooth scroll for anchor links
+// Smooth scroll for anchor links (with navbar offset)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const navbarHeight = document.getElementById('navbar').offsetHeight;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
     });
 });
 
 // Q&A Accordion
 document.querySelectorAll('.qa-question').forEach(question => {
-    question.addEventListener('click', () => {
-        const item = question.closest('.qa-item');
+    question.addEventListener('click', function() {
+        const item = this.closest('.qa-item');
+        if (!item) return;
         const isActive = item.classList.contains('active');
 
         // Close all other items
@@ -102,7 +107,11 @@ document.querySelectorAll('.qa-question').forEach(question => {
         });
 
         // Toggle current item
-        item.classList.toggle('active', !isActive);
+        if (isActive) {
+            item.classList.remove('active');
+        } else {
+            item.classList.add('active');
+        }
     });
 });
 
