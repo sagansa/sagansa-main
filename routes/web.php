@@ -9,3 +9,7 @@ Route::get('/', function () {
 Route::get('/kebijakan-privasi', function () {
     return view('privacy-policy');
 });
+
+Route::get('/cara-perhitungan', function () {
+    return view('billing');
+});
