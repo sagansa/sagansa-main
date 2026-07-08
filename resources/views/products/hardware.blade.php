@@ -3,7 +3,7 @@
 @section('title', 'Sagansa Hardware — Perangkat Kasir yang Terjangkau')
 @section('description', 'Perangkat keras kasir yang kompatibel dengan Sagansa POS — printer thermal, scanner, dan perangkat pendukung lainnya dengan harga terjangkau.')
 @section('keywords', 'hardware kasir, printer thermal, scanner barcode, perangkat POS, Sagansa')
-@section('canonical', '<link rel="canonical" href="https://sagansa.id/produk/hardware">')
+@section('canonical', 'https://sagansa.id/produk/hardware')
 
 @section('content')
 {{-- HERO --}}

@@ -3,7 +3,7 @@
 @section('title', 'Download Aplikasi — Sagansa POS & Attendance')
 @section('description', 'Download aplikasi Sagansa POS dan Sagansa Attendance untuk Android dan iOS. Kelola transaksi dan absensi langsung dari perangkat mobile Anda.')
 @section('keywords', 'download, aplikasi, Sagansa POS, Sagansa Attendance, Google Play, App Store, Android, iOS')
-@section('canonical', '<link rel="canonical" href="https://sagansa.id/download">')
+@section('canonical', 'https://sagansa.id/download')
 
 @section('content')
 <div class="product-hero">

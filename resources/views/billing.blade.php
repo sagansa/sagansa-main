@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Cara Perhitungan & Pembayaran — Sagansa POS')
-@section('description', 'Penjelasan lengkap cara perhitungan tagihan dan sistem pembayaran Sagansa POS — 1% dari omzet, maksimal Rp59.000 per store per bulan.')
+@section('description', 'Penjelasan lengkap cara perhitungan tagihan dan sistem pembayaran Sagansa POS — 1% dari omzet, maksimal Rp59.000 per store per bulan (promo dari Rp99.000).')
 @section('keywords', 'perhitungan tagihan, cara bayar, billing Sagansa, harga POS, omzet')
-@section('canonical', '<link rel="canonical" href="https://sagansa.id/cara-perhitungan">')
+@section('canonical', 'https://sagansa.id/cara-perhitungan')
 
 @section('head')
 <style>
@@ -147,7 +147,7 @@
         <div class="billing-hero-inner">
             <div class="billing-hero-icon">💡</div>
             <h1>Cara Perhitungan & Pembayaran</h1>
-            <p>Penjelasan lengkap bagaimana tagihan dihitung, kapan harus dibayar, dan apa konsekuensi jika terlambat.</p>
+            <p>Penjelasan lengkap bagaimana tagihan dihitung, kapan harus dibayar, dan apa konsekuensi jika terlambat. <strong>Promo berlaku: harga normal Rp99.000 → Rp59.000 per store/bulan.</strong></p>
         </div>
     </div>
 
@@ -157,13 +157,14 @@
             {{-- SECTION 1: RUMUS --}}
             <div class="billing-section">
                 <div class="billing-section-badge blue">Rumus Perhitungan</div>
-                <h2>1% dari Omzet, Maks. Rp59.000 per Store</h2>
-                <p class="billing-section-intro">Tagihan dihitung berdasarkan persentase omzet (total penjualan) setiap store yang Anda miliki. Semakin kecil omzet, semakin kecil tagihan — tapi tetap ada batas maksimal.</p>
+                <h2>1% dari Omzet, Maks. <del style="color:var(--gray-400)">Rp99.000</del> Rp59.000 per Store</h2>
+                <p class="billing-section-intro">Tagihan dihitung berdasarkan persentase omzet (total penjualan) setiap store yang Anda miliki. Semakin kecil omzet, semakin kecil tagihan — tapi tetap ada batas maksimal. <strong>Selama masa promo, batas maksimal diturunkan dari Rp99.000 menjadi Rp59.000!</strong></p>
                 <div class="billing-formula-card">
                     <div class="billing-formula">
                         <div class="billing-formula-label">Rumus</div>
                         <div class="billing-formula-text">Tagihan Store = <strong>1%</strong> × Omzet Bulanan</div>
-                        <div class="billing-formula-text">Maksimal = <strong>Rp59.000</strong> / store / bulan</div>
+                        <div class="billing-formula-text">Harga normal = <strong>Rp99.000</strong> / store / bulan</div>
+                        <div class="billing-formula-text">Promo = <strong style="color: var(--success)">Rp59.000</strong> / store / bulan <span style="font-size:0.85rem;color:var(--gray-500)">(hemat 40%)</span></div>
                     </div>
                 </div>
                 <div class="billing-examples">
@@ -294,7 +295,7 @@
                 <h2>5 Poin Penting</h2>
                 <div class="billing-summary-grid">
                     <div class="billing-summary-card"><div class="billing-summary-number">1</div><h4>Gratis untuk Store Baru</h4><p>Store baru tanpa transaksi tidak dikenakan biaya apapun.</p></div>
-                    <div class="billing-summary-card"><div class="billing-summary-number">2</div><h4>1% dari Omzet</h4><p>Dihitung dari total penjualan, maksimal Rp59.000 per store per bulan.</p></div>
+                    <div class="billing-summary-card"><div class="billing-summary-number">2</div><h4>1% dari Omzet</h4><p>Dihitung dari total penjualan, maksimal Rp59.000 per store per bulan (promo dari Rp99.000).</p></div>
                     <div class="billing-summary-card"><div class="billing-summary-number">3</div><h4>Tagihan Mulai Bulan ke-5</h4><p>Setelah transaksi pertama, Anda punya waktu hingga bulan ke-5.</p></div>
                     <div class="billing-summary-card"><div class="billing-summary-number">4</div><h4>Bayar Sebelum Tanggal 10</h4><p>Total tagihan wajib dibayar seluruhnya, tidak bisa per store.</p></div>
                     <div class="billing-summary-card"><div class="billing-summary-number">5</div><h4>Terlambat = Suspend</h4><p>Melewati tanggal 10 tanpa pembayaran, seluruh akun dinonaktifkan.</p></div>

@@ -17,7 +17,7 @@
     </div>
     <div class="qa-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
         <div class="qa-answer-inner">
-            <p itemprop="text">Sagansa menggunakan sistem "Pakai dulu, bayar kemudian" — tanpa biaya awal (setup fee). Tagihan dihitung berdasarkan persentase omzet toko Anda, dengan batas maksimal Rp59.000 per store per bulan. Jadi semakin kecil omzet Anda, semakin kecil tagihannya.</p>
+            <p itemprop="text">Sagansa menggunakan sistem "Pakai dulu, bayar kemudian" — tanpa biaya awal (setup fee). Tagihan dihitung berdasarkan persentase omzet toko Anda, dengan batas maksimal Rp59.000 per store per bulan (saat ini sedang promo dari harga normal Rp99.000). Jadi semakin kecil omzet Anda, semakin kecil tagihannya.</p>
         </div>
     </div>
 </div>
@@ -29,7 +29,7 @@
     </div>
     <div class="qa-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
         <div class="qa-answer-inner">
-            <p itemprop="text">Tidak ada. Sagansa sepenuhnya gratis untuk dimulai — tanpa biaya setup, tanpa biaya langganan tetap, dan tanpa kontrak. Anda hanya dikenakan tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store per bulan.</p>
+            <p itemprop="text">Tidak ada. Sagansa sepenuhnya gratis untuk dimulai — tanpa biaya setup, tanpa biaya langganan tetap, dan tanpa kontrak. Anda hanya dikenakan tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store per bulan (promo dari Rp99.000).</p>
         </div>
     </div>
 </div>

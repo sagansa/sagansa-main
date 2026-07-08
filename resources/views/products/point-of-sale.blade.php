@@ -3,7 +3,7 @@
 @section('title', 'Sagansa POS — Aplikasi Kasir & Point of Sale Modern')
 @section('description', 'Sagansa POS adalah aplikasi kasir modern untuk restoran, cafe, foodcourt, dan UMKM F&B Indonesia. Mendukung QRIS, multi-channel online order, manajemen shift, dan terintegrasi attendance.')
 @section('keywords', 'POS, point of sale, aplikasi kasir, QRIS, restoran, cafe, foodcourt, UMKM, Sagansa')
-@section('canonical', '<link rel="canonical" href="https://sagansa.id/produk/point-of-sale">')
+@section('canonical', 'https://sagansa.id/produk/point-of-sale')
 
 @section('content')
 {{-- HERO --}}
@@ -160,7 +160,7 @@
         <div class="product-section-header">
             <div class="section-label green">💰 Harga</div>
             <h2>Pakai Dulu, Bayar Kemudian</h2>
-            <p>Tidak ada biaya awal, tidak ada biaya langganan tetap. Tagihan berdasarkan 1% omzet, maksimal Rp59.000 per store per bulan.</p>
+            <p>Tidak ada biaya awal, tidak ada biaya langganan tetap. Tagihan berdasarkan 1% omzet, maksimal Rp59.000 per store per bulan (promo dari Rp99.000).</p>
         </div>
         <a href="/cara-perhitungan" class="btn btn-secondary">
             Lihat Cara Perhitungan

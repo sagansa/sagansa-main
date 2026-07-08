@@ -6,6 +6,8 @@
         </a>
         <div class="nav-links" id="navLinks">
             <a href="/#features">Fitur</a>
+            <a href="/blog">Blog</a>
+            <a href="/vlog">Vlog</a>
             <div class="nav-dropdown">
                 <button class="nav-dropdown-toggle" aria-expanded="false">
                     Produk

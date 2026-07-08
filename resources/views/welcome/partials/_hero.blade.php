@@ -10,7 +10,7 @@
             </h1>
             <p>
                 Sagansa POS menggabungkan sistem kasir modern dengan manajemen kehadiran karyawan.
-                <strong>Pakai dulu, bayar kemudian</strong> — tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store.
+                <strong>Pakai dulu, bayar kemudian</strong> — tagihan berdasarkan persentase omzet, maksimal <del>Rp99.000</del> <strong>Rp59.000</strong> per store (promo).
             </p>
             <div class="hero-buttons">
                 <a href="https://ops.sagansa.id/auth/register" target="_blank" class="btn btn-primary">

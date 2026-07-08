@@ -3,7 +3,7 @@
 @section('title', 'Tanya Jawab — Sagansa POS')
 @section('description', 'Pertanyaan yang sering diajukan tentang Sagansa POS — dari cara mulai, sistem billing, integrasi, hingga teknis.')
 @section('keywords', 'FAQ, tanya jawab, Q&A, Sagansa POS, pertanyaan umum')
-@section('canonical', '<link rel="canonical" href="https://sagansa.id/qna">')
+@section('canonical', 'https://sagansa.id/qna')
 
 @section('content')
 <div class="product-hero">

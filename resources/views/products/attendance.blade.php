@@ -3,7 +3,7 @@
 @section('title', 'Sagansa Attendance — Sistem Absensi Karyawan Terintegrasi')
 @section('description', 'Sistem absensi karyawan yang terintegrasi langsung dengan Sagansa POS. Kelola kehadiran, shift, terlambat, dan lembur dalam satu platform.')
 @section('keywords', 'attendance, absensi karyawan, sistem absensi, manajemen shift, kehadiran, Sagansa')
-@section('canonical', '<link rel="canonical" href="https://sagansa.id/produk/attendance">')
+@section('canonical', 'https://sagansa.id/produk/attendance')
 
 @section('content')
 {{-- HERO --}}

@@ -6,12 +6,15 @@
             <p class="section-desc">Tidak ada biaya awal. Tidak ada biaya langganan tetap. Anda hanya membayar berdasarkan persentase omzet — kami untung kalau Anda untung.</p>
         </div>
         <div class="pricing-card">
+            <div class="pricing-promo-badge">🔥 Promo Terbatas — Hemat 40%</div>
             <h3>Tagihan Berdasarkan Omzet</h3>
             <div class="pricing-amount">
-                <span>Maks.</span> Rp59.000<span style="font-size: 1rem; font-weight: 400;"> / store / bulan</span>
+                <span class="price-original">Rp99.000</span>
+                <span class="price-promo">Rp59.000</span>
+                <span class="price-unit">/ store / bulan</span>
             </div>
             <p class="pricing-detail">
-                Semakin kecil omzet, semakin kecil tagihan. Semakin besar omzet, tetap terbatas Rp59.000 per store. Cocok untuk semua skala bisnis.
+                Harga normal Rp99.000 — <strong>sekarang cukup Rp59.000</strong> selama masa promo! Tagihan dihitung 1% dari omzet, dengan batas maksimal Rp59.000 per store. Semakin kecil omzet, semakin kecil tagihan.
             </p>
             <div class="pricing-features">
                 <div class="pricing-feature">

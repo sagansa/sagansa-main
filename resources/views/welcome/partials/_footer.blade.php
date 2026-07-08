@@ -33,8 +33,9 @@
                 <h4>Resources</h4>
                 <ul>
                     <li><a href="/qna">Q&A</a></li>
-                    <li><span class="footer-link-soon">Blog <span class="coming-soon-tag">Coming Soon</span></span></li>
-                    <li><span class="footer-link-soon">Vlog <span class="coming-soon-tag">Coming Soon</span></span></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/vlog">Vlog</a></li>
+                    <li><a href="/beta">Beta Tester</a></li>
                 </ul>
             </div>
             <div class="footer-col">

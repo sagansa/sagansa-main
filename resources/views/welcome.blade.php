@@ -1,115 +1,13 @@
 @extends('layouts.app')
 
 @section('title', 'Sagansa POS — Aplikasi Kasir & Point of Sale Terintegrasi Attendance')
-@section('description', 'Sagansa POS adalah aplikasi kasir modern yang terintegrasi dengan sistem absensi karyawan. Pakai dulu, bayar kemudian — tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store. Mendukung QRIS, GoFood, ShopeeFood, GrabFood.')
+@section('description', 'Sagansa POS adalah aplikasi kasir modern yang terintegrasi dengan sistem absensi karyawan. Pakai dulu, bayar kemudian — tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store (promo dari Rp99.000). Mendukung QRIS, GoFood, ShopeeFood, GrabFood.')
 @section('keywords', 'POS, point of sale, aplikasi kasir, kasir online, QRIS, absensi karyawan, attendance, GoFood, ShopeeFood, GrabFood, restoran, cafe, UMKM, Indonesia, Sagansa, sagansa pos, software kasir, sistem kasir, aplikasi restoran, foodcourt, manajemen shift')
-@section('canonical', '<link rel="canonical" href="https://sagansa.id/">')
+@section('canonical', 'https://sagansa.id/')
+@section('og_title', 'Sagansa POS — Aplikasi Kasir & Point of Sale Terintegrasi Attendance')
+@section('og_description', 'Aplikasi kasir modern terintegrasi absensi karyawan. Pakai dulu, bayar kemudian — maksimal Rp59.000 per store (promo dari Rp99.000). Mendukung QRIS, GoFood, ShopeeFood, GrabFood.')
 
-@section('head')
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sagansa.id/">
-    <meta property="og:title" content="Sagansa POS — Aplikasi Kasir & Point of Sale Terintegrasi Attendance">
-    <meta property="og:description" content="Aplikasi kasir modern terintegrasi absensi karyawan. Pakai dulu, bayar kemudian — maksimal Rp59.000 per store. Mendukung QRIS, GoFood, ShopeeFood, GrabFood.">
-    <meta property="og:site_name" content="Sagansa POS">
-    <meta property="og:locale" content="id_ID">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sagansa POS — Aplikasi Kasir & Point of Sale Terintegrasi Attendance">
-    <meta name="twitter:description" content="Aplikasi kasir modern terintegrasi absensi karyawan. Pakai dulu, bayar kemudian — maksimal Rp59.000 per store.">
-
-    <!-- JSON-LD: SoftwareApplication -->
-    @verbatim
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Sagansa POS",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web",
-        "description": "Sagansa POS adalah aplikasi kasir modern yang terintegrasi dengan sistem absensi karyawan. Pakai dulu, bayar kemudian — tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store.",
-        "url": "https://sagansa.id/",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "IDR",
-            "description": "Gratis tanpa biaya awal. Tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store per bulan."
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "PT Sagansa Engineering Indonesia",
-            "url": "https://sagansa.id/",
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+62-811-1923-572",
-                "contactType": "sales",
-                "availableLanguage": "Indonesian"
-            }
-        },
-        "featureList": [
-            "QRIS dengan Nominal Otomatis",
-            "Variant & Modification",
-            "Fitur Paket & Bahan Baku",
-            "Manajemen Shift",
-            "Tax & Biaya Layanan",
-            "Refund via Approval",
-            "Jumlah User Tidak Terbatas",
-            "Support Foodcourt",
-            "Pemisahan Channel Online (GoFood, ShopeeFood, GrabFood)",
-            "Terintegrasi Attendance"
-        ]
-    }
-    </script>
-    @endverbatim
-
-    <!-- JSON-LD: Organization (GEO/AEO — Entity Building) -->
-    @verbatim
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "PT Sagansa Engineering Indonesia",
-        "alternateName": "Sagansa",
-        "url": "https://sagansa.id/",
-        "logo": "https://sagansa.id/logo.png",
-        "description": "Perusahaan teknologi Indonesia yang mengembangkan Sagansa POS — aplikasi kasir dan point of sale terintegrasi dengan sistem absensi karyawan untuk UMKM, restoran, cafe, dan foodcourt.",
-        "foundingDate": "2024",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+62-811-1923-572",
-            "contactType": "sales",
-            "availableLanguage": "Indonesian"
-        },
-        "sameAs": [
-            "https://instagram.com/sagansa.id",
-            "https://www.linkedin.com/company/sagansa",
-            "https://www.youtube.com/@sagansa"
-        ]
-    }
-    </script>
-    @endverbatim
-
-    <!-- JSON-LD: WebSite + SearchAction (GEO/AEO — Knowledge Graph) -->
-    @verbatim
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Sagansa POS",
-        "url": "https://sagansa.id/",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://sagansa.id/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        },
-        "publisher": {
-            "@id": "https://sagansa.id/#organization"
-        }
-    }
-    </script>
-    @endverbatim
-
+@section('jsonld')
     <!-- JSON-LD: FAQPage (GEO/AEO — Answer Engine Optimization) -->
     @verbatim
     <script type="application/ld+json">
@@ -130,7 +28,7 @@
                 "name": "Bagaimana sistem billing Sagansa POS bekerja?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Sagansa menggunakan sistem 'Pakai dulu, bayar kemudian' — tanpa biaya awal (setup fee). Tagihan dihitung berdasarkan persentase omzet toko Anda, dengan batas maksimal Rp59.000 per store per bulan. Jadi semakin kecil omzet Anda, semakin kecil tagihannya."
+                    "text": "Sagansa menggunakan sistem 'Pakai dulu, bayar kemudian' — tanpa biaya awal (setup fee). Tagihan dihitung berdasarkan persentase omzet toko Anda, dengan batas maksimal Rp59.000 per store per bulan (promo dari Rp99.000). Jadi semakin kecil omzet Anda, semakin kecil tagihannya."
                 }
             },
             {
@@ -138,7 +36,7 @@
                 "name": "Apakah ada biaya awal atau biaya langganan tetap?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Tidak ada. Sagansa sepenuhnya gratis untuk dimulai — tanpa biaya setup, tanpa biaya langganan tetap, dan tanpa kontrak. Anda hanya dikenakan tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store per bulan."
+                    "text": "Tidak ada. Sagansa sepenuhnya gratis untuk dimulai — tanpa biaya setup, tanpa biaya langganan tetap, dan tanpa kontrak. Anda hanya dikenakan tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store per bulan (promo dari Rp99.000)."
                 }
             },
             {
@@ -228,6 +126,8 @@
 @endsection
 
 @section('content')
+    @include('welcome.partials._beta-banner')
+
     @include('welcome.partials._hero')
 
     @include('welcome.partials._pricing')
