@@ -2,7 +2,7 @@
 
 @php
     $priceNormalVal = (int) \App\Models\Setting::get('price_normal', '99000');
-    $pricePromoVal = \App\Models\Setting::get('price_promo');
+    $pricePromoVal = \App\Models\Setting::get('price_promo', '59000');
     $pricePromoVal = $pricePromoVal !== null && $pricePromoVal !== '' ? (int)$pricePromoVal : null;
     $pricePercentage = \App\Models\Setting::get('price_percentage', '1');
     $priceAttendanceVal = (int) \App\Models\Setting::get('price_attendance_additional', '2000');
