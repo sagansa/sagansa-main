@@ -110,7 +110,7 @@
         <h2>Mulai Dulu, Hardware Belakangan</h2>
         <p>Anda bisa langsung menggunakan Sagansa POS dari smartphone. Hardware bisa menyusul kapan saja Anda butuh.</p>
         <div class="product-cta-buttons">
-            <a href="https://ops.sagansa.id/auth/register" target="_blank" class="btn btn-primary">
+            <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary">
                 Mulai Gratis Sekarang
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>

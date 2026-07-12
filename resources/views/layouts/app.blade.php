@@ -24,8 +24,8 @@
     <meta name="twitter:description" content="@yield('og_description', 'Sagansa POS — Aplikasi Kasir Modern & Terintegrasi Attendance untuk UMKM Indonesia')">
 
     <!-- Favicon SVG -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='40' y2='40'%3E%3Cstop offset='0%25' stop-color='%232563eb'/%3E%3Cstop offset='100%25' stop-color='%238b5cf6'/%3E%3C/defs%3E%3Ctext x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='Arial,sans-serif' font-weight='900' font-size='22' fill='white'%3ES%3C/text%3E%3C/svg%3E">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/sagansa-logo.svg') }}?v=2">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('images/sagansa-logo.svg') }}?v=2">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,13 +42,13 @@
         "name": "Sagansa POS",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
-        "description": "Sagansa POS adalah aplikasi kasir modern yang terintegrasi dengan sistem absensi karyawan. Pakai dulu, bayar kemudian — tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store (promo dari Rp99.000).",
+        "description": "Sagansa POS & Attendance adalah aplikasi kasir & absensi karyawan terintegrasi untuk UMKM. Pakai dulu, bayar kemudian — gratis biaya awal, tagihan berbasis pemakaian adil, serta operasional tetap berjalan normal saat terlambat bayar.",
         "url": "https://sagansa.id/",
         "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "IDR",
-            "description": "Gratis tanpa biaya awal. Tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store per bulan (promo dari harga normal Rp99.000)."
+            "description": "Gratis tanpa biaya awal. Tagihan bersahabat untuk UMKM (POS maks Rp{{ number_format((int)\App\Models\Setting::get('price_promo', '59000'), 0, ',', '.') }}/bulan + Attendance gratis; atau Attendance-only mulai dari Rp{{ number_format((int)\App\Models\Setting::get('price_attendance_additional', '2000'), 0, ',', '.') }}/karyawan aktif setelah 5 karyawan gratis)."
         },
         "provider": {
             "@type": "Organization",
@@ -130,7 +130,12 @@
 </head>
 <body>
 
-@include('welcome.partials._navbar')
+<div class="site-header">
+    @if(Request::is('/') || Request::routeIs('welcome'))
+        @include('welcome.partials._beta-banner')
+    @endif
+    @include('welcome.partials._navbar')
+</div>
 
 @yield('content')
 
@@ -139,6 +144,9 @@
 @include('welcome.partials._cookie-banner')
 
 @include('welcome.partials._wa-float')
+
+    <!-- Three.js CDN (untuk 3D interaktif) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 @vite(['resources/js/welcome.js'])
 

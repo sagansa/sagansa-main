@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Sagansa POS — Aplikasi Kasir & Point of Sale Terintegrasi Attendance')
-@section('description', 'Sagansa POS adalah aplikasi kasir modern yang terintegrasi dengan sistem absensi karyawan. Pakai dulu, bayar kemudian — tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store (promo dari Rp99.000). Mendukung QRIS, GoFood, ShopeeFood, GrabFood.')
+@section('title', 'Sagansa POS & Attendance — Aplikasi Kasir & Absensi Karyawan Terintegrasi')
+@section('description', 'Sagansa POS & Attendance adalah aplikasi kasir dan absensi karyawan terintegrasi untuk UMKM. Pakai dulu, bayar kemudian. Gratis untuk penggunaan awal, dan aplikasi kasir & absensi tetap berjalan normal di lapangan meskipun pembayaran terlambat.')
 @section('keywords', 'POS, point of sale, aplikasi kasir, kasir online, QRIS, absensi karyawan, attendance, GoFood, ShopeeFood, GrabFood, restoran, cafe, UMKM, Indonesia, Sagansa, sagansa pos, software kasir, sistem kasir, aplikasi restoran, foodcourt, manajemen shift')
 @section('canonical', 'https://sagansa.id/')
-@section('og_title', 'Sagansa POS — Aplikasi Kasir & Point of Sale Terintegrasi Attendance')
-@section('og_description', 'Aplikasi kasir modern terintegrasi absensi karyawan. Pakai dulu, bayar kemudian — maksimal Rp59.000 per store (promo dari Rp99.000). Mendukung QRIS, GoFood, ShopeeFood, GrabFood.')
+@section('og_title', 'Sagansa POS & Attendance — Aplikasi Kasir & Absensi Karyawan Terintegrasi')
+@section('og_description', 'Aplikasi kasir & absensi karyawan terintegrasi untuk UMKM. Pakai dulu, bayar kemudian. Gratis untuk penggunaan awal, serta operasional kasir & absensi tetap berjalan normal meskipun pembayaran terlambat.')
 
 @section('jsonld')
     <!-- JSON-LD: FAQPage (GEO/AEO — Answer Engine Optimization) -->
@@ -25,10 +25,10 @@
             },
             {
                 "@type": "Question",
-                "name": "Bagaimana sistem billing Sagansa POS bekerja?",
+                "name": "Bagaimana sistem billing Sagansa bekerja?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Sagansa menggunakan sistem 'Pakai dulu, bayar kemudian' — tanpa biaya awal (setup fee). Tagihan dihitung berdasarkan persentase omzet toko Anda, dengan batas maksimal Rp59.000 per store per bulan (promo dari Rp99.000). Jadi semakin kecil omzet Anda, semakin kecil tagihannya."
+                    "text": "Sagansa menggunakan sistem 'Pakai dulu, bayar kemudian' — tanpa biaya awal (setup fee). Jika Anda menggunakan POS, fitur absensi karyawan (Attendance) otomatis gratis 100% (hanya dikenakan tagihan POS {{ \App\Models\Setting::get('price_percentage', '1') }}% omzet, maks Rp{{ number_format((int)\App\Models\Setting::get('price_promo', '59000'), 0, ',', '.') }}/bulan). Jika hanya menggunakan Attendance, 5 karyawan aktif pertama gratis, dan karyawan aktif ke-6 dst dikenakan biaya Rp{{ number_format((int)\App\Models\Setting::get('price_attendance_additional', '2000'), 0, ',', '.') }}/karyawan/bulan."
                 }
             },
             {
@@ -36,7 +36,7 @@
                 "name": "Apakah ada biaya awal atau biaya langganan tetap?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Tidak ada. Sagansa sepenuhnya gratis untuk dimulai — tanpa biaya setup, tanpa biaya langganan tetap, dan tanpa kontrak. Anda hanya dikenakan tagihan berdasarkan persentase omzet, maksimal Rp59.000 per store per bulan (promo dari Rp99.000)."
+                    "text": "Tidak ada. Sagansa sepenuhnya gratis untuk dimulai — tanpa biaya setup, tanpa biaya langganan tetap, dan tanpa kontrak. Tagihan hanya berdasarkan penggunaan nyata (POS berdasarkan omzet, atau Attendance-only mulai dari karyawan ke-6 yang aktif)."
                 }
             },
             {
@@ -99,7 +99,7 @@
                 "position": 1,
                 "name": "Daftar Akun",
                 "text": "Klik tombol 'Mulai Gratis' atau daftar langsung di ops.sagansa.id untuk membuat akun Sagansa POS Anda.",
-                "url": "https://ops.sagansa.id/auth/register"
+                "url": "https://ops.sagansa.id/id/auth/register"
             },
             {
                 "@type": "HowToStep",
@@ -126,13 +126,15 @@
 @endsection
 
 @section('content')
-    @include('welcome.partials._beta-banner')
-
     @include('welcome.partials._hero')
+
+    @include('welcome.partials._story')
 
     @include('welcome.partials._pricing')
 
     @include('welcome.partials._features')
+
+    @include('welcome.partials._screenshots')
 
     @include('welcome.partials._integration')
 

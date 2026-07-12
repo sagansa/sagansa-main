@@ -14,7 +14,7 @@
         <h1>Absensi Karyawan<br>Terintegrasi POS</h1>
         <p>Tidak perlu aplikasi terpisah untuk mengelola kehadiran karyawan. Sagansa Attendance terhubung langsung dengan POS — data kehadiran, shift, dan performa SDM dalam satu dashboard.</p>
         <div class="product-hero-buttons">
-            <a href="https://ops.sagansa.id/auth/register" target="_blank" class="btn btn-primary">
+            <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary">
                 Mulai Gratis
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -91,7 +91,7 @@
         <h2>Kelola Karyawan Lebih Efisien</h2>
         <p>Mulai gratis sekarang. Absensi terintegrasi dengan POS — tanpa biaya tambahan.</p>
         <div class="product-cta-buttons">
-            <a href="https://ops.sagansa.id/auth/register" target="_blank" class="btn btn-primary">
+            <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary">
                 Mulai Gratis Sekarang
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>

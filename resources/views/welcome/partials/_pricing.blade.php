@@ -1,53 +1,241 @@
+@php
+    $priceNormalVal = (int) \App\Models\Setting::get('price_normal', '99000');
+    $pricePromoVal = \App\Models\Setting::get('price_promo');
+    $pricePromoVal = $pricePromoVal !== null && $pricePromoVal !== '' ? (int)$pricePromoVal : null;
+    $pricePercentage = \App\Models\Setting::get('price_percentage', '1');
+    $priceAttendanceVal = (int) \App\Models\Setting::get('price_attendance_additional', '2000');
+
+    $isPromoActive = $pricePromoVal !== null && $pricePromoVal < $priceNormalVal;
+    $priceNormalFormatted = 'Rp' . number_format($priceNormalVal, 0, ',', '.');
+    $pricePromoFormatted = $pricePromoVal !== null ? 'Rp' . number_format($pricePromoVal, 0, ',', '.') : '';
+    $priceAttendanceFormatted = 'Rp' . number_format($priceAttendanceVal, 0, ',', '.');
+    
+    // Hitung persentase hemat
+    $savingPercent = 0;
+    if ($isPromoActive && $priceNormalVal > 0) {
+        $savingPercent = round((($priceNormalVal - $pricePromoVal) / $priceNormalVal) * 100);
+    }
+@endphp
 <section class="section pricing-highlight" id="pricing">
     <div class="section-inner">
         <div class="section-header">
             <div class="section-label">💰 Model Pembayaran Revolusioner</div>
             <h2 class="section-title">Pakai Dulu, Bayar Kemudian</h2>
-            <p class="section-desc">Tidak ada biaya awal. Tidak ada biaya langganan tetap. Anda hanya membayar berdasarkan persentase omzet — kami untung kalau Anda untung.</p>
+            <p class="section-desc">Tidak ada biaya awal. Tidak ada biaya langganan tetap. Skema pembayaran postpaid yang dirancang adil dan bersahabat untuk bisnis UMKM.</p>
         </div>
-        <div class="pricing-card">
-            <div class="pricing-promo-badge">🔥 Promo Terbatas — Hemat 40%</div>
-            <h3>Tagihan Berdasarkan Omzet</h3>
-            <div class="pricing-amount">
-                <span class="price-original">Rp99.000</span>
-                <span class="price-promo">Rp59.000</span>
-                <span class="price-unit">/ store / bulan</span>
+
+        <style>
+            .pricing-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+                max-width: 960px;
+                margin: 40px auto 0;
+            }
+            .pricing-card-custom {
+                background: rgba(15, 23, 42, 0.65);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(139, 92, 246, 0.25);
+                border-radius: 28px;
+                padding: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-align: left;
+                box-shadow: 0 30px 60px -15px rgba(0,0,0,0.5), 0 0 40px rgba(139, 92, 246, 0.15);
+                transition: transform 0.3s ease, border-color 0.3s ease;
+            }
+            .pricing-card-custom:hover {
+                transform: translateY(-4px);
+                border-color: rgba(139, 92, 246, 0.5);
+            }
+            .pricing-card-custom.featured {
+                border-color: rgba(245, 158, 11, 0.45); /* Amber outline */
+                box-shadow: 0 30px 60px -15px rgba(0,0,0,0.5), 0 0 40px rgba(245, 158, 11, 0.18);
+                position: relative;
+            }
+            .pricing-card-custom.featured .pricing-promo-badge-custom {
+                position: absolute;
+                top: -16px;
+                left: 40px;
+                background: linear-gradient(135deg, #fbbf24, #d97706);
+                color: #fff;
+                font-size: 0.75rem;
+                font-weight: 800;
+                padding: 6px 16px;
+                border-radius: 100px;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+                box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+                border: 1px solid rgba(255,255,255,0.15);
+            }
+            .pricing-card-custom h3 {
+                font-size: 1.4rem;
+                color: #fff;
+                margin-top: 10px;
+                margin-bottom: 8px;
+                font-weight: 800;
+                letter-spacing: -0.01em;
+            }
+            .pricing-card-custom .pricing-desc {
+                font-size: 0.9rem;
+                color: rgba(255,255,255,0.7);
+                line-height: 1.55;
+                margin-bottom: 24px;
+            }
+            .pricing-card-custom .pricing-amount-custom {
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+                margin: 20px 0;
+            }
+            .pricing-card-custom .price-glow-custom {
+                font-size: 2.2rem;
+                font-weight: 900;
+                color: #fff;
+            }
+            .pricing-card-custom.featured .price-glow-custom {
+                background: linear-gradient(135deg, #fff, #fbb824);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .pricing-card-custom .price-original-custom {
+                text-decoration: line-through;
+                font-size: 1.2rem;
+                color: rgba(255,255,255,0.35);
+            }
+            .pricing-card-custom .price-unit-custom {
+                font-size: 0.85rem;
+                color: rgba(255,255,255,0.5);
+            }
+            .pricing-card-custom .pricing-features-list {
+                margin: 24px 0;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                list-style: none;
+                padding: 0;
+            }
+            .pricing-card-custom .pricing-feature-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                font-size: 0.9rem;
+                color: rgba(255,255,255,0.85);
+                line-height: 1.45;
+            }
+            .pricing-card-custom .pricing-feature-item svg {
+                width: 18px;
+                height: 18px;
+                flex-shrink: 0;
+                color: #34d399;
+                margin-top: 1px;
+            }
+            .pricing-card-custom .btn-action {
+                margin-top: 24px;
+            }
+            @media (max-width: 820px) {
+                .pricing-grid {
+                    grid-template-columns: 1fr;
+                    max-width: 480px;
+                    gap: 36px;
+                }
+                .pricing-card-custom.featured .pricing-promo-badge-custom {
+                    left: 24px;
+                }
+            }
+        </style>
+
+        <div class="pricing-grid">
+            <!-- Paket 1: POS + Attendance Saja Sampingan -->
+            <div class="pricing-card-custom featured">
+                <div class="pricing-promo-badge-custom">🔥 Paket Kasir Utama + Absensi</div>
+                <h3>POS + Attendance Gratis</h3>
+                <p class="pricing-desc">Jika Anda menggunakan POS untuk transaksi di warung/toko Anda, maka seluruh fitur absensi karyawan otomatis <strong>gratis 100%</strong> tanpa batas.</p>
+                <div class="pricing-amount-custom">
+                    @if($isPromoActive)
+                        <span class="price-original-custom">{{ $priceNormalFormatted }}</span>
+                        <span class="price-glow-custom">{{ $pricePromoFormatted }}</span>
+                    @else
+                        <span class="price-glow-custom">{{ $priceNormalFormatted }}</span>
+                    @endif
+                    <span class="price-unit-custom">/ store / bulan (maks)</span>
+                </div>
+                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: -16px; margin-bottom: 20px;">
+                    Dihitung {{ $pricePercentage }}% dari omzet store Anda. Semakin kecil omzet, semakin kecil tagihan!
+                </p>
+                <ul class="pricing-features-list">
+                    <li class="pricing-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                        Aplikasi Kasir POS lengkap di mobile/tablet
+                    </li>
+                    <li class="pricing-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                        <strong>Gratis modul Attendance (Absensi) karyawan sepuasnya</strong>
+                    </li>
+                    <li class="pricing-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                        Tanpa biaya pendaftaran (setup fee) & biaya langganan tetap
+                    </li>
+                    <li class="pricing-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                        Dukungan pembayaran QRIS otomatis nominal & e-wallet
+                    </li>
+                    <li class="pricing-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                        Stok otomatis, kelola multi-tenant/foodcourt, & jumlah user bebas
+                    </li>
+                </ul>
+                <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary btn-action">
+                    Mulai POS & Absensi Gratis
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
             </div>
-            <p class="pricing-detail">
-                Harga normal Rp99.000 — <strong>sekarang cukup Rp59.000</strong> selama masa promo! Tagihan dihitung 1% dari omzet, dengan batas maksimal Rp59.000 per store. Semakin kecil omzet, semakin kecil tagihan.
-            </p>
-            <div class="pricing-features">
-                <div class="pricing-feature">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                    Tanpa biaya pendaftaran
+
+            <!-- Paket 2: Attendance Saja -->
+            <div class="pricing-card-custom">
+                <h3 style="margin-top: 0;">Attendance Saja</h3>
+                <p class="pricing-desc">Gunakan sistem absensi modern (GPS & selfie) untuk mencatat kehadiran karyawan tanpa menggunakan aplikasi kasir POS.</p>
+                <div class="pricing-amount-custom">
+                    <span class="price-glow-custom" style="background: linear-gradient(135deg, #fff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Gratis*</span>
+                    <span class="price-unit-custom">untuk 5 karyawan aktif pertama</span>
                 </div>
-                <div class="pricing-feature">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                    Tanpa kontrak minimum
-                </div>
-                <div class="pricing-feature">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                    Jumlah user tidak terbatas
-                </div>
-                <div class="pricing-feature">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                    Semua fitur sudah termasuk
-                </div>
-                <div class="pricing-feature">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                    Support foodcourt
-                </div>
-                <div class="pricing-feature">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                    Upgrade & downgrade kapan saja
-                </div>
+                <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: -16px; margin-bottom: 20px;">
+                    Mulai karyawan ke-6 hanya dikenakan <strong>{{ $priceAttendanceFormatted }} / karyawan aktif / bulan</strong>.
+                </p>
+                <ul class="pricing-features-list">
+                    <li class="pricing-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                        Absensi deteksi lokasi (GPS) anti kecurangan & foto selfie
+                    </li>
+                    <li class="pricing-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                        <strong>Hanya bayar karyawan aktif</strong> (tidak masuk kerja = Rp0)
+                    </li>
+                    <li class="pricing-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                        Kelola shift kerja, data terlambat, & lembur otomatis
+                    </li>
+                    <li class="pricing-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                        Export laporan absensi bulanan instan ke Excel
+                    </li>
+                    <li class="pricing-feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+                        Aplikasi absensi mobile & panel operasional (ops dashboard)
+                    </li>
+                </ul>
+                <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-secondary btn-action" style="background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.25);">
+                    Mulai Absensi Karyawan Saja
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
             </div>
-            <a href="https://ops.sagansa.id/auth/register" target="_blank" class="btn btn-white">
-                Mulai Tanpa Biaya
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="/cara-perhitungan" class="btn btn-white" style="margin-top: 12px; background: transparent; color: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.3);">
-                💡 Lihat Ilustrasi Perhitungan
+        </div>
+
+        <div style="text-align: center; margin-top: 36px;">
+            <a href="/cara-perhitungan" class="btn btn-white" style="background: transparent; color: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.2); display: inline-flex;">
+                💡 Lihat Cara Perhitungan Lengkap &amp; Alur Pembayaran
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         </div>

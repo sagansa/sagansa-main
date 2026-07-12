@@ -1,7 +1,27 @@
 @extends('layouts.app')
 
-@section('title', 'Cara Perhitungan & Pembayaran — Sagansa POS')
-@section('description', 'Penjelasan lengkap cara perhitungan tagihan dan sistem pembayaran Sagansa POS — 1% dari omzet, maksimal Rp59.000 per store per bulan (promo dari Rp99.000).')
+@php
+    $priceNormalVal = (int) \App\Models\Setting::get('price_normal', '99000');
+    $pricePromoVal = \App\Models\Setting::get('price_promo');
+    $pricePromoVal = $pricePromoVal !== null && $pricePromoVal !== '' ? (int)$pricePromoVal : null;
+    $pricePercentage = \App\Models\Setting::get('price_percentage', '1');
+    $priceAttendanceVal = (int) \App\Models\Setting::get('price_attendance_additional', '2000');
+
+    $isPromoActive = $pricePromoVal !== null && $pricePromoVal < $priceNormalVal;
+    $priceNormalFormatted = 'Rp' . number_format($priceNormalVal, 0, ',', '.');
+    $pricePromoFormatted = $pricePromoVal !== null ? 'Rp' . number_format($pricePromoVal, 0, ',', '.') : '';
+    $priceAttendanceFormatted = 'Rp' . number_format($priceAttendanceVal, 0, ',', '.');
+    
+    // Hitung total untuk contoh multi-store
+    $storeATagihan = 30000;
+    $storeBTagihan = $pricePromoVal ?? $priceNormalVal;
+    $storeCTagihan = 8000;
+    $totalMultiStore = $storeATagihan + $storeBTagihan + $storeCTagihan;
+    $totalMultiStoreFormatted = 'Rp' . number_format($totalMultiStore, 0, ',', '.');
+@endphp
+
+@section('title', 'Cara Perhitungan & Pembayaran — Sagansa')
+@section('description', 'Penjelasan lengkap cara perhitungan tagihan dan sistem pembayaran Sagansa POS & Attendance — Skema tagihan adil pascabayar untuk UMKM.')
 @section('keywords', 'perhitungan tagihan, cara bayar, billing Sagansa, harga POS, omzet')
 @section('canonical', 'https://sagansa.id/cara-perhitungan')
 
@@ -147,34 +167,44 @@
         <div class="billing-hero-inner">
             <div class="billing-hero-icon">💡</div>
             <h1>Cara Perhitungan & Pembayaran</h1>
-            <p>Penjelasan lengkap bagaimana tagihan dihitung, kapan harus dibayar, dan apa konsekuensi jika terlambat. <strong>Promo berlaku: harga normal Rp99.000 → Rp59.000 per store/bulan.</strong></p>
+            <p>Penjelasan lengkap bagaimana tagihan dihitung, pilihan skema tagihan adil (POS / Attendance), dan jaminan operasional kasir & absensi tetap berjalan normal walau terjadi keterlambatan bayar.</p>
         </div>
     </div>
 
     <div class="billing-content">
         <div class="billing-inner">
 
-            {{-- SECTION 1: RUMUS --}}
+            {{-- SECTION 1: PILIHAN PAKET & PERHITUNGAN --}}
             <div class="billing-section">
-                <div class="billing-section-badge blue">Rumus Perhitungan</div>
-                <h2>1% dari Omzet, Maks. <del style="color:var(--gray-400)">Rp99.000</del> Rp59.000 per Store</h2>
-                <p class="billing-section-intro">Tagihan dihitung berdasarkan persentase omzet (total penjualan) setiap store yang Anda miliki. Semakin kecil omzet, semakin kecil tagihan — tapi tetap ada batas maksimal. <strong>Selama masa promo, batas maksimal diturunkan dari Rp99.000 menjadi Rp59.000!</strong></p>
-                <div class="billing-formula-card">
-                    <div class="billing-formula">
-                        <div class="billing-formula-label">Rumus</div>
-                        <div class="billing-formula-text">Tagihan Store = <strong>1%</strong> × Omzet Bulanan</div>
-                        <div class="billing-formula-text">Harga normal = <strong>Rp99.000</strong> / store / bulan</div>
-                        <div class="billing-formula-text">Promo = <strong style="color: var(--success)">Rp59.000</strong> / store / bulan <span style="font-size:0.85rem;color:var(--gray-500)">(hemat 40%)</span></div>
+                <div class="billing-section-badge blue">Skema Tagihan</div>
+                <h2>Dua Pilihan Skema Tagihan Bersahabat</h2>
+                <p class="billing-section-intro">Kami menawarkan dua pilihan skema tagihan pascabayar (postpaid) yang sangat adil dan disesuaikan dengan skala operasional bisnis UMKM Anda.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-bottom: 40px;">
+                    <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 20px; padding: 28px;">
+                        <div class="billing-formula-label" style="color: var(--primary);">Opsi A: POS + Attendance Saja</div>
+                        <p style="font-size: 0.95rem; color: var(--gray-600); margin-bottom: 16px; line-height: 1.5;">Jika menggunakan aplikasi kasir POS, modul absensi karyawan otomatis <strong>gratis sepuasnya</strong> tanpa batas karyawan.</p>
+                        <div class="billing-formula-text">Tagihan = <strong>{{ $pricePercentage }}%</strong> × Omzet Bulanan</div>
+                        <div class="billing-formula-text">Maksimal = <strong>{{ $pricePromoFormatted }}</strong> / store / bulan <span style="font-size:0.8rem;color:var(--gray-500)">(Promo dari {{ $priceNormalFormatted }})</span></div>
+                    </div>
+                    
+                    <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 20px; padding: 28px;">
+                        <div class="billing-formula-label" style="color: var(--accent2);">Opsi B: Attendance Saja</div>
+                        <p style="font-size: 0.95rem; color: var(--gray-600); margin-bottom: 16px; line-height: 1.5;">Jika hanya menggunakan sistem absensi karyawan tanpa aplikasi kasir POS. Tagihan dihitung berbasis karyawan aktif.</p>
+                        <div class="billing-formula-text"><strong>5 Karyawan Aktif Pertama</strong> = <strong>Gratis (Rp0)</strong></div>
+                        <div class="billing-formula-text">Mulai Karyawan ke-6 = <strong>{{ $priceAttendanceFormatted }}</strong> / karyawan aktif / bulan</div>
                     </div>
                 </div>
+
                 <div class="billing-examples">
-                    <h3>Contoh Perhitungan</h3>
-                    <div class="billing-example-grid">
+                    <h3>Contoh Perhitungan Opsi A (POS + Attendance Saja)</h3>
+                    <div class="billing-example-grid" style="margin-bottom: 45px;">
                         <div class="billing-example-card">
                             <div class="billing-example-header"><span class="billing-example-tag green">Omzet Kecil</span></div>
                             <div class="billing-example-body">
                                 <div class="billing-example-row"><span>Omzet bulan ini</span><strong>Rp1.500.000</strong></div>
                                 <div class="billing-example-row"><span>1% × Omzet</span><strong>Rp15.000</strong></div>
+                                <div class="billing-example-row"><span>Fitur Absensi</span><strong>Gratis</strong></div>
                                 <div class="billing-example-divider"></div>
                                 <div class="billing-example-row result"><span>Tagihan</span><strong>Rp15.000</strong></div>
                             </div>
@@ -184,6 +214,7 @@
                             <div class="billing-example-body">
                                 <div class="billing-example-row"><span>Omzet bulan ini</span><strong>Rp4.000.000</strong></div>
                                 <div class="billing-example-row"><span>1% × Omzet</span><strong>Rp40.000</strong></div>
+                                <div class="billing-example-row"><span>Fitur Absensi</span><strong>Gratis</strong></div>
                                 <div class="billing-example-divider"></div>
                                 <div class="billing-example-row result"><span>Tagihan</span><strong>Rp40.000</strong></div>
                             </div>
@@ -192,9 +223,45 @@
                             <div class="billing-example-header"><span class="billing-example-tag purple">Omzet Besar</span></div>
                             <div class="billing-example-body">
                                 <div class="billing-example-row"><span>Omzet bulan ini</span><strong>Rp8.000.000</strong></div>
-                                <div class="billing-example-row"><span>1% × Omzet</span><strong class="strikethrough">Rp80.000</strong></div>
+                                <div class="billing-example-row"><span>{{ $pricePercentage }}% × Omzet</span><strong class="strikethrough">Rp80.000</strong></div>
+                                <div class="billing-example-row"><span>Fitur Absensi</span><strong>Gratis</strong></div>
                                 <div class="billing-example-divider"></div>
-                                <div class="billing-example-row result"><span>Tagihan (maks.)</span><strong>Rp59.000</strong></div>
+                                <div class="billing-example-row result"><span>Tagihan (maks.)</span><strong>{{ $pricePromoFormatted }}</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Contoh Perhitungan Opsi B (Attendance Saja)</h3>
+                    <p class="billing-section-intro" style="margin-bottom: 20px;">*Hanya menghitung karyawan terdaftar yang aktif melakukan absensi masuk/keluar minimal satu kali dalam satu bulan tagihan.</p>
+                    <div class="billing-example-grid">
+                        <div class="billing-example-card">
+                            <div class="billing-example-header"><span class="billing-example-tag green">Karyawan Kecil</span></div>
+                            <div class="billing-example-body">
+                                <div class="billing-example-row"><span>Karyawan terdaftar</span><strong>8 Karyawan</strong></div>
+                                <div class="billing-example-row"><span>Karyawan aktif absen</span><strong>4 Karyawan</strong></div>
+                                <div class="billing-example-row"><span>Karyawan berbayar</span><strong>0 Karyawan</strong> <span style="font-size:0.8rem;color:var(--gray-400)">(<5)</span></div>
+                                <div class="billing-example-divider"></div>
+                                <div class="billing-example-row result"><span>Tagihan</span><strong>Rp0</strong></div>
+                            </div>
+                        </div>
+                        <div class="billing-example-card">
+                            <div class="billing-example-header"><span class="billing-example-tag blue">Karyawan Sedang</span></div>
+                            <div class="billing-example-body">
+                                <div class="billing-example-row"><span>Karyawan terdaftar</span><strong>8 Karyawan</strong></div>
+                                <div class="billing-example-row"><span>Karyawan aktif absen</span><strong>8 Karyawan</strong></div>
+                                <div class="billing-example-row"><span>Karyawan berbayar</span><strong>3 Karyawan</strong> <span style="font-size:0.8rem;color:var(--gray-400)">(8 - 5)</span></div>
+                                <div class="billing-example-divider"></div>
+                                <div class="billing-example-row result"><span>Tagihan</span><strong>Rp{{ number_format(3 * $priceAttendanceVal, 0, ',', '.') }}</strong></div>
+                            </div>
+                        </div>
+                        <div class="billing-example-card">
+                            <div class="billing-example-header"><span class="billing-example-tag purple">Karyawan Banyak</span></div>
+                            <div class="billing-example-body">
+                                <div class="billing-example-row"><span>Karyawan terdaftar</span><strong>25 Karyawan</strong></div>
+                                <div class="billing-example-row"><span>Karyawan aktif absen</span><strong>15 Karyawan</strong></div>
+                                <div class="billing-example-row"><span>Karyawan berbayar</span><strong>10 Karyawan</strong> <span style="font-size:0.8rem;color:var(--gray-400)">(15 - 5)</span></div>
+                                <div class="billing-example-divider"></div>
+                                <div class="billing-example-row result"><span>Tagihan</span><strong>Rp{{ number_format(10 * $priceAttendanceVal, 0, ',', '.') }}</strong></div>
                             </div>
                         </div>
                     </div>
@@ -221,13 +288,13 @@
                         </div>
                         <div class="billing-store-item">
                             <div class="billing-store-icon">🍜</div>
-                            <div class="billing-store-info"><strong>Store B — Mie Ayam</strong><span>Omzet Rp5.900.000 → <strong>Rp59.000</strong> (maks.)</span></div>
+                            <div class="billing-store-info"><strong>Store B — Mie Ayam</strong><span>Omzet Rp5.900.000 → <strong>{{ $pricePromoFormatted }}</strong> (maks.)</span></div>
                         </div>
                         <div class="billing-store-item">
                             <div class="billing-store-icon">🍰</div>
                             <div class="billing-store-info"><strong>Store C — Bakery</strong><span>Omzet Rp800.000 → <strong>Rp8.000</strong></span></div>
                         </div>
-                        <div class="billing-store-total"><span>Total Tagihan Bulan Ini</span><strong>Rp97.000</strong></div>
+                        <div class="billing-store-total"><span>Total Tagihan Bulan Ini</span><strong>{{ $totalMultiStoreFormatted }}</strong></div>
                     </div>
                 </div>
             </div>
@@ -252,7 +319,7 @@
                     </div>
                     <div class="billing-timeline-item">
                         <div class="billing-timeline-dot danger"></div>
-                        <div class="billing-timeline-content"><div class="billing-timeline-period">Melewati Tanggal 10</div><div class="billing-timeline-desc"><strong>Akun suspend.</strong> Jika tagihan belum dibayar setelah tanggal 10, seluruh akun akan dinonaktifkan dan tidak bisa digunakan sampai tagihan dilunasi.</div></div>
+                        <div class="billing-timeline-content"><div class="billing-timeline-period">Melewati Tanggal 10</div><div class="billing-timeline-desc"><strong>Pembatasan Dashboard.</strong> Jika tagihan belum dibayar setelah tanggal 10, kasir POS & absensi karyawan di handphone tetap dapat digunakan 100% secara normal. Hanya akses ke data historis dan laporan keuangan di panel operasional (apps/ops) yang dibatasi sampai tagihan dilunasi.</div></div>
                     </div>
                 </div>
             </div>
@@ -269,7 +336,7 @@
                         <div class="billing-calendar-arrow">↓</div>
                         <div class="billing-calendar-period bill"><div class="billing-calendar-label"><strong>Awal Bulan Berikutnya</strong></div><div class="billing-calendar-desc">Tagihan bulan lalu muncul. Anda bisa melihat rincian perhitungan di dashboard.</div></div>
                         <div class="billing-calendar-arrow">↓</div>
-                        <div class="billing-calendar-period deadline"><div class="billing-calendar-label"><strong>⚠️ Batas Tanggal 10</strong></div><div class="billing-calendar-desc">Tagihan wajib sudah dibayar seluruhnya sebelum tanggal 10. Jika melewati, akun otomatis suspend.</div></div>
+                        <div class="billing-calendar-period deadline"><div class="billing-calendar-label"><strong>⚠️ Batas Tanggal 10</strong></div><div class="billing-calendar-desc">Tagihan wajib sudah dibayar seluruhnya sebelum tanggal 10. Jika melewati, akses riwayat transaksi & laporan keuangan di panel operasional (apps/ops) akan dikunci secara otomatis.</div></div>
                     </div>
                 </div>
             </div>
@@ -277,15 +344,39 @@
             {{-- SECTION 5: SUSPEND --}}
             <div class="billing-section">
                 <div class="billing-section-badge" style="background: rgba(239,68,68,0.1); color: var(--danger);">Konsekuensi</div>
-                <h2>Terlambat Bayar = Akun Suspend</h2>
-                <p class="billing-section-intro">Jika tagihan belum dilunasi setelah tanggal 10, <strong>seluruh akun</strong> akan di-suspend. Artinya semua store dalam akun Anda tidak bisa dioperasikan.</p>
+                <h2>Terlambat Bayar = Pembatasan Akses Dashboard</h2>
+                <p class="billing-section-intro">Jika tagihan belum dilunasi setelah tanggal 10, akses ke panel operasional (apps/ops) akan dibatasi. Namun, operasional kasir & absensi karyawan di lapangan dijamin <strong>tetap berjalan normal 100%</strong>.</p>
                 <div class="billing-warning-box">
                     <div class="billing-warning-icon">🚫</div>
-                    <div class="billing-warning-content"><h4>Akun Suspend</h4><ul><li>Tidak bisa melakukan transaksi penjualan</li><li>Tidak bisa mengakses dashboard</li><li>Semua store dalam akun terpengaruh</li><li>Data tetap tersimpan dan tidak hilang</li></ul></div>
+                    <div class="billing-warning-content">
+                        <h4>Fungsi yang Dibatasi (Dashboard apps/ops)</h4>
+                        <ul>
+                            <li>Akses melihat laporan keuangan bulanan & grafik analitik dikunci</li>
+                            <li>Akses mengunduh laporan absensi Excel & riwayat transaksi ditangguhkan</li>
+                            <li>Data Anda tetap tersimpan sangat aman dan tidak akan hilang</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="billing-warning-box success" style="background: #eff6ff; border-color: #bfdbfe;">
+                    <div class="billing-warning-icon">📱</div>
+                    <div class="billing-warning-content">
+                        <h4 style="color: var(--primary);">Fungsi yang Tetap Bekerja Normal (Operasional Lapangan)</h4>
+                        <ul>
+                            <li><strong>Aplikasi Kasir POS</strong> di toko tetap bisa memproses transaksi & menerima pembayaran</li>
+                            <li><strong>Aplikasi Absensi Karyawan</strong> tetap dapat merekam kehadiran, lokasi GPS, & foto selfie</li>
+                            <li>Data absensi & transaksi terekam offline/lokal dan otomatis tersinkron setelah status aktif kembali</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="billing-warning-box success">
                     <div class="billing-warning-icon">✅</div>
-                    <div class="billing-warning-content"><h4>Setelah Melunasi Tagihan</h4><ul><li>Akun langsung aktif kembali</li><li>Semua store bisa digunakan seperti biasa</li><li>Data selama suspend tetap utuh</li></ul></div>
+                    <div class="billing-warning-content">
+                        <h4>Setelah Melunasi Tagihan</h4>
+                        <ul>
+                            <li>Akses dashboard langsung terbuka kembali seketika secara otomatis</li>
+                            <li>Semua data transaksi & kehadiran yang terekam selama masa pembatasan langsung sinkron dan muncul utuh</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -295,10 +386,10 @@
                 <h2>5 Poin Penting</h2>
                 <div class="billing-summary-grid">
                     <div class="billing-summary-card"><div class="billing-summary-number">1</div><h4>Gratis untuk Store Baru</h4><p>Store baru tanpa transaksi tidak dikenakan biaya apapun.</p></div>
-                    <div class="billing-summary-card"><div class="billing-summary-number">2</div><h4>1% dari Omzet</h4><p>Dihitung dari total penjualan, maksimal Rp59.000 per store per bulan (promo dari Rp99.000).</p></div>
+                    <div class="billing-summary-card"><div class="billing-summary-number">2</div><h4>Skema Tagihan Adil</h4><p>POS 1% omzet (maks Rp59k) + Attendance Gratis; atau Attendance Saja Rp5k/karyawan aktif setelah 5 karyawan gratis.</p></div>
                     <div class="billing-summary-card"><div class="billing-summary-number">3</div><h4>Tagihan Mulai Bulan ke-5</h4><p>Setelah transaksi pertama, Anda punya waktu hingga bulan ke-5.</p></div>
                     <div class="billing-summary-card"><div class="billing-summary-number">4</div><h4>Bayar Sebelum Tanggal 10</h4><p>Total tagihan wajib dibayar seluruhnya, tidak bisa per store.</p></div>
-                    <div class="billing-summary-card"><div class="billing-summary-number">5</div><h4>Terlambat = Suspend</h4><p>Melewati tanggal 10 tanpa pembayaran, seluruh akun dinonaktifkan.</p></div>
+                    <div class="billing-summary-card"><div class="billing-summary-number">5</div><h4>Operasional Tetap Aman</h4><p>Terlambat bayar hanya membatasi dashboard. Kasir POS & Absensi Karyawan tetap berjalan normal 100%.</p></div>
                 </div>
             </div>
 

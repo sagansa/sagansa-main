@@ -30,8 +30,12 @@
             }
         } catch (e) {}
 
+        // Add class to body if banner is shown
+        document.body.classList.add('has-beta-banner');
+
         close.addEventListener('click', function () {
             banner.style.display = 'none';
+            document.body.classList.remove('has-beta-banner');
             try {
                 localStorage.setItem(KEY, JSON.stringify({ until: Date.now() + 7 * 24 * 60 * 60 * 1000 }));
             } catch (e) {}

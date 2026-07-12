@@ -4,7 +4,7 @@
             <h2>Siap Mengelola Bisnis dengan Lebih Mudah?</h2>
             <p>Mulai gunakan Sagansa POS sekarang — tanpa biaya awal, tanpa risiko. Anda hanya membayar ketika bisnis sudah berjalan dan menghasilkan omzet.</p>
             <div class="cta-buttons">
-                <a href="https://ops.sagansa.id/auth/register" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 36px;">
+                <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 36px;">
                     Daftar Sekarang — Gratis
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>

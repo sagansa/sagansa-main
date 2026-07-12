@@ -237,6 +237,113 @@
         border: 1px solid #fecaca;
     }
 
+    /* Timeline Steps */
+    .testing-workflow {
+        background: #fff;
+        border-radius: 24px;
+        border: 1px solid var(--gray-200);
+        padding: 48px 32px;
+        margin-top: 48px;
+    }
+    .testing-workflow h3 {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+    }
+    .testing-workflow .workflow-subtitle {
+        text-align: center;
+        color: var(--gray-500);
+        margin-bottom: 40px;
+        font-size: 0.95rem;
+    }
+    .steps-timeline {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        position: relative;
+    }
+    .step-card {
+        background: var(--gray-50);
+        border: 1px solid var(--gray-200);
+        border-radius: 16px;
+        padding: 24px;
+        position: relative;
+        transition: all 0.25s;
+    }
+    .step-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        border-color: var(--primary);
+    }
+    .step-num {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+    .step-card.recommend {
+        border-color: #fbbf24;
+        background: #fffdf5;
+    }
+    .step-card.recommend .step-num {
+        background: #fbbf24;
+    }
+    .recommend-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        background: #fef3c7;
+        color: #b45309;
+        padding: 2px 8px;
+        border-radius: 100px;
+        text-transform: uppercase;
+    }
+    .step-card h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--gray-900);
+    }
+    .step-card p {
+        font-size: 0.85rem;
+        color: var(--gray-500);
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+    .step-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        padding: 6px 12px;
+        background: #eff6ff;
+        border-radius: 8px;
+        transition: background 0.15s;
+    }
+    .step-btn:hover {
+        background: #dbeafe;
+    }
+    .step-btn.gold {
+        color: #b45309;
+        background: #fef3c7;
+    }
+    .step-btn.gold:hover {
+        background: #fde68a;
+    }
+
     /* Benefits grid */
     .beta-benefits {
         display: grid;
@@ -302,7 +409,8 @@
         line-height: 1.6;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+        .steps-timeline { grid-template-columns: 1fr; }
         .beta-hero h1 { font-size: 2rem; }
         .beta-form-card { padding: 28px 20px; }
         .beta-email-row { flex-direction: column; }
@@ -317,7 +425,7 @@
     <div class="beta-hero-inner">
         <span class="beta-hero-badge">🚀 PROGRAM BETA</span>
         <h1>Jadi Beta Tester Sagansa</h1>
-        <p>Sagansa POS &amp; Sagansa Attendance sudah siap! Daftar sekarang untuk mendapatkan akses awal sebelum rilis resmi di Google Play Store — <strong>gratis</strong> selama masa pengujian.</p>
+        <p>Sagansa POS &amp; Sagansa Attendance sudah siap di Google Play Console! Jadilah bagian dari penguji resmi kami dan coba kecanggihan fiturnya sebelum diluncurkan ke publik secara luas.</p>
         <div class="beta-hero-apps">
             <div class="beta-hero-app">🛒 Sagansa POS</div>
             <div class="beta-hero-app">📋 Sagansa Attendance</div>
@@ -329,14 +437,16 @@
 <div class="beta-section" style="background: linear-gradient(180deg, #f5f3ff 0%, #fff 100%); padding-top: 0;">
     <div class="beta-form-card">
         @if(session('success'))
-            <div class="beta-alert success">✅ {{ session('success') }}</div>
+            <div class="beta-alert success">
+                {!! session('success') !!}
+            </div>
         @endif
         @if(session('error'))
             <div class="beta-alert error">{{ session('error') }}</div>
         @endif
 
-        <h2>Daftar Beta Tester</h2>
-        <p class="form-sub">Cukup masukkan email Anda — kami akan kirim undangan download via Google Play.</p>
+        <h2>Daftar Penguji Resmi</h2>
+        <p class="form-sub">Masukkan email akun Google Play Anda untuk kami daftarkan ke daftar whitelist Google Console.</p>
 
         <form method="POST" action="{{ route('beta.store') }}">
             @csrf
@@ -346,10 +456,10 @@
             </div>
 
             <div class="beta-form-group">
-                <label for="email">Alamat Email *</label>
+                <label for="email">Alamat Email Google Play *</label>
                 <div class="beta-email-row">
                     <input type="email" id="email" name="email" required
-                           value="{{ old('email') }}" placeholder="nama@email.com" autocomplete="email">
+                           value="{{ old('email') }}" placeholder="nama@gmail.com" autocomplete="email">
                     <button type="submit" class="beta-submit-btn">Daftar</button>
                 </div>
                 @error('email') <div style="color: var(--danger); font-size: 0.8rem; margin-top: 6px;">{{ $message }}</div> @enderror
@@ -374,14 +484,71 @@
             </div>
 
             <p class="beta-form-note">
-                Dengan mendaftar, Anda menyetujui email Anda digunakan untuk mengirim undangan Google Play Testing. Data Anda aman &amp; tidak dibagikan ke pihak ketiga.
+                Sesuai dengan ketentuan Google Play Store, penguji diharuskan untuk aktif menguji dan membiarkan aplikasi terinstal selama **14 hari berturut-turut**.
             </p>
         </form>
+    </div>
+
+    <!-- Timeline Closed Testing -->
+    <div class="beta-section-inner">
+        <div class="testing-workflow">
+            <h3>4 Langkah Mudah Memulai Pengujian</h3>
+            <p class="workflow-subtitle">Ikuti langkah-langkah di bawah ini agar Anda terdaftar sebagai penguji sah sesuai ketentuan Google Play.</p>
+            
+            <div class="steps-timeline">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h4>Daftar Email</h4>
+                    <p>Isi formulir pendaftaran di atas menggunakan email yang Anda gunakan untuk login di Google Play Store perangkat Anda.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card recommend">
+                    <span class="recommend-badge">Sangat Disarankan</span>
+                    <div class="step-num">2</div>
+                    <h4>Gabung Google Group</h4>
+                    <p>Google Console memerlukan akses izin penguji. Gabung ke Google Group Penguji Sagansa untuk persetujuan instan otomatis.</p>
+                    @php
+                        $groupLink = \App\Models\Setting::get('google_group_link', 'https://groups.google.com/g/sagansa-beta-testers');
+                    @endphp
+                    <a href="{{ $groupLink }}" target="_blank" class="step-btn gold">
+                        Gabung Group ➔
+                    </a>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h4>Opt-In Pengujian</h4>
+                    <p>Setelah email Anda masuk whitelist (melalui Google Group/Formulir), klik link persetujuan Google Play di bawah ini:</p>
+                    @php
+                        $playPos = \App\Models\Setting::get('google_play_pos_link', '#');
+                        $playAtt = \App\Models\Setting::get('google_play_attendance_link', '#');
+                    @endphp
+                    <div style="display:flex; flex-direction:column; gap:8px;">
+                        <a href="{{ $playPos }}" target="_blank" class="step-btn">
+                            Opt-in POS ➔
+                        </a>
+                        <a href="{{ $playAtt }}" target="_blank" class="step-btn">
+                            Opt-in Attendance ➔
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-card">
+                    <div class="step-num">4</div>
+                    <h4>Instal & Gunakan</h4>
+                    <p>Download aplikasi di Google Play Store, lalu gunakan dan biarkan terinstal selama minimal **14 hari berturut-turut**.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 {{-- Benefits --}}
-<div class="beta-section">
+<div class="beta-section" style="border-top: 1px solid var(--gray-200);">
     <div class="beta-section-inner">
         <h2 style="text-align:center; font-size:1.8rem; font-weight:800; color:var(--gray-900); margin-bottom:12px;">Kenapa Jadi Beta Tester?</h2>
         <p style="text-align:center; color:var(--gray-500); margin-bottom:48px; font-size:1.02rem;">Keuntungan eksklusif yang Anda dapat sebagai beta tester Sagansa.</p>
@@ -406,34 +573,30 @@
 </div>
 
 {{-- FAQ --}}
-<div class="beta-section" style="background: var(--gray-50);">
+<div class="beta-section" style="background: var(--gray-50); border-top: 1px solid var(--gray-200);">
     <div class="beta-section-inner">
         <h2 style="text-align:center; font-size:1.8rem; font-weight:800; color:var(--gray-900); margin-bottom:40px;">Pertanyaan Umum</h2>
         <div class="beta-faq">
             <div class="beta-faq-item">
+                <h4>Mengapa saya harus bergabung ke Google Group?</h4>
+                <p>Google Play Console membutuhkan daftar email penguji yang sah. Memasukkan satu per satu email penguji secara manual membutuhkan waktu verifikasi admin. Dengan bergabung ke Google Group kami, email Anda akan dikenali langsung oleh sistem Google Play sebagai penguji yang sah secara instan.</p>
+            </div>
+            <div class="beta-faq-item">
                 <h4>Bagaimana cara mendapatkan aplikasinya?</h4>
-                <p>Setelah Anda mendaftar, kami akan menambahkan email Anda ke daftar Google Play Closed Testing. Anda akan menerima email undangan dari Google Play dengan link download. Pastikan email yang didaftarkan sama dengan email Google/Play Store Anda.</p>
+                <p>Setelah email Anda bergabung di Google Group, klik tombol <strong>Opt-in</strong> pada Langkah 3. Google Play akan menampilkan halaman persetujuan. Klik tombol 'Become a Tester', lalu Anda akan diberikan link khusus untuk mengunduh aplikasi langsung dari Google Play Store.</p>
             </div>
             <div class="beta-faq-item">
-                <h4>Apakah ada biaya untuk ikut beta?</h4>
-                <p>Tidak ada. Program beta <strong>100% gratis</strong>. Anda bisa menggunakan semua fitur tanpa biaya selama masa pengujian.</p>
+                <h4>Apakah aman untuk data bisnis saya?</h4>
+                <p>Pasti. Data pengujian Anda aman, terenkripsi, dan hanya digunakan untuk analisis performa aplikasi selama masa pengembangan.</p>
             </div>
             <div class="beta-faq-item">
-                <h4>Aplikasi apa saja yang bisa diuji?</h4>
-                <p>Saat ini kami membuka beta untuk <strong>Sagansa POS</strong> (aplikasi kasir) dan <strong>Sagansa Attendance</strong> (absensi karyawan). Anda bisa pilih salah satu atau keduanya saat mendaftar.</p>
-            </div>
-            <div class="beta-faq-item">
-                <h4>Berapa lama program beta berlangsung?</h4>
-                <p>Program beta berjalan hingga aplikasi siap rilis resmi di Google Play Store. Tester akan tetap mendapatkan update dan dukungan selama periode tersebut.</p>
-            </div>
-            <div class="beta-faq-item">
-                <h4>Apakah data saya aman?</h4>
-                <p>Pastinya. Email Anda hanya digunakan untuk mengirim undangan Google Play Testing dan komunikasi seputar beta. Kami tidak membagikan data Anda ke pihak ketiga.</p>
+                <h4>Kenapa harus diinstal selama 14 hari?</h4>
+                <p>Ini adalah syarat wajib dan mutlak dari kebijakan terbaru Google Play Console bagi akun developer perorangan baru sebelum aplikasi kami diizinkan untuk dipublikasikan secara umum.</p>
             </div>
         </div>
 
         <div class="beta-disclaimer">
-            <strong>📝 Catatan:</strong> Google Play Console memerlukan minimal 20 tester aktif selama 14 hari berturut-turut sebelum aplikasi bisa diajukan ke produksi. Dengan mendaftar, Anda membantu Sagansa mencapai tahap rilis resmi lebih cepat. Terima kasih atas dukungan Anda!
+            <strong>📝 Catatan Penting:</strong> Terima kasih atas kesediaan Anda meluangkan waktu menjadi penguji. Bantuan Anda dalam menginstal dan membuka aplikasi selama 14 hari berturut-turut sangat membantu Sagansa untuk rilis secara resmi di Google Play Store dengan cepat!
         </div>
     </div>
 </div>

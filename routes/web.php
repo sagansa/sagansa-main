@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\VlogController as AdminVlogController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BetaTesterController;
 use App\Http\Controllers\VlogController;
@@ -117,5 +118,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/beta-testers/export', [AdminBetaTesterController::class, 'export'])->name('beta.export');
         Route::post('/beta-testers/{tester}/status', [AdminBetaTesterController::class, 'updateStatus'])->name('beta.status');
         Route::delete('/beta-testers/{tester}', [AdminBetaTesterController::class, 'destroy'])->name('beta.destroy');
+
+        // Pengaturan Link Aplikasi
+        Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+        Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
     });
 });

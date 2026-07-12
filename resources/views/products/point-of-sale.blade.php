@@ -14,7 +14,7 @@
         <h1>Aplikasi Kasir Modern<br>untuk Bisnis Indonesia</h1>
         <p>Sagansa POS dirancang khusus untuk restoran, cafe, foodcourt, dan UMKM F&B. Kelola transaksi, menu, shift, dan order online — semua dalam satu platform yang mudah digunakan.</p>
         <div class="product-hero-buttons">
-            <a href="https://ops.sagansa.id/auth/register" target="_blank" class="btn btn-primary">
+            <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary">
                 Mulai Gratis
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
@@ -133,6 +133,13 @@
                     <p>Kelola banyak tenant dalam satu platform foodcourt. Setiap tenant memiliki laporan terpisah, namun manajemen pusat tetap terkontrol dalam satu dashboard.</p>
                 </div>
             </div>
+            <div class="product-list-item">
+                <div class="product-list-icon">🔌</div>
+                <div class="product-list-text">
+                    <h3>Integrasi API & SaaS Custom</h3>
+                    <p>Menyediakan akses API untuk dihubungkan langsung dengan platform SaaS internal Anda. Butuh aplikasi kustom/SaaS khusus skala perusahaan? Hubungi kami untuk mendesain dan membangun aplikasi kustom yang sesuai dengan kebutuhan unik bisnis Anda.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -160,7 +167,7 @@
         <div class="product-section-header">
             <div class="section-label green">💰 Harga</div>
             <h2>Pakai Dulu, Bayar Kemudian</h2>
-            <p>Tidak ada biaya awal, tidak ada biaya langganan tetap. Tagihan berdasarkan 1% omzet, maksimal Rp59.000 per store per bulan (promo dari Rp99.000).</p>
+            <p>Tidak ada biaya awal, tidak ada biaya langganan tetap. Tagihan hanya berdasarkan 1% omzet (maksimal Rp59.000 per store/bulan). Dengan menggunakan POS, fitur absensi karyawan (Attendance) otomatis <strong>gratis sepuasnya</strong> tanpa biaya tambahan.</p>
         </div>
         <a href="/cara-perhitungan" class="btn btn-secondary">
             Lihat Cara Perhitungan
@@ -175,7 +182,7 @@
         <h2>Siap Memulai dengan Sagansa POS?</h2>
         <p>Gratis tanpa biaya awal. Daftar sekarang dan kelola bisnis Anda lebih efisien.</p>
         <div class="product-cta-buttons">
-            <a href="https://ops.sagansa.id/auth/register" target="_blank" class="btn btn-primary">
+            <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary">
                 Mulai Gratis Sekarang
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>

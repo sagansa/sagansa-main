@@ -26,6 +26,7 @@ class FeatureSeeder extends Seeder
             ['📈', 'emerald', 'Skalabel: UMKM hingga Enterprise', 'Mulai dari 1 outlet hingga ratusan cabang. Sagansa tumbuh bersama bisnis Anda tanpa perlu ganti sistem. Performance tetap optimal di skala apa pun.'],
             ['📱', 'pink', 'Pemisahan Channel Online', 'Pisahkan order dari GoFood, ShopeeFood, dan GrabFood secara otomatis. Laporan per channel memudahkan analisis performa dan rekonsiliasi pembayaran.'],
             ['✅', 'sky', 'Terintegrasi Attendance', 'Absensi karyawan terhubung langsung dengan POS. Data kehadiran, terlambat, dan lembur otomatis terekam — tidak perlu aplikasi terpisah untuk mengelola SDM.'],
+            ['🔌', 'purple', 'Akses API & SaaS Custom', 'Menyediakan akses API untuk dihubungkan langsung dengan platform SaaS internal Anda, atau hubungi kami bila ingin dibuatkan aplikasi kustom / SaaS kustom khusus perusahaan.'],
         ];
 
         foreach ($features as $idx => [$icon, $color, $title, $desc]) {

@@ -1,7 +1,7 @@
 <nav class="navbar" id="navbar">
     <div class="navbar-inner">
         <a href="/" class="logo">
-            <div class="logo-icon">S</div>
+            <img src="{{ asset('images/sagansa-logo.svg') }}" alt="Sagansa Logo" style="height: 36px; width: 36px; object-fit: contain;">
             Sagansa
         </a>
         <div class="nav-links" id="navLinks">
@@ -41,8 +41,8 @@
             <a href="/cara-perhitungan">Harga</a>
             <a href="/qna">Q&A</a>
             <a href="/download">Download</a>
-            <a href="https://ops.sagansa.id/auth/login" target="_blank" class="btn btn-secondary" style="padding: 10px 24px; font-size: 0.9rem;">Login</a>
-            <a href="https://ops.sagansa.id/auth/register" target="_blank" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">Mulai Gratis</a>
+            <a href="https://ops.sagansa.id/id/auth/login" target="_blank" class="btn btn-secondary" style="padding: 10px 24px; font-size: 0.9rem;">Login</a>
+            <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">Mulai Gratis</a>
         </div>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
             <span></span>
