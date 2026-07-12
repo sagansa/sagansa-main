@@ -140,6 +140,8 @@
 
     @include('welcome.partials._online-orders')
 
+    @include('welcome.partials._app-download')
+
     @include('welcome.partials._cta')
 
     @include('welcome.partials._qa')
