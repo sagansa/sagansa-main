@@ -5,7 +5,7 @@
     --primary-dark: #1d4ed8;
     --primary-light: #3b82f6;
     --accent: #06b6d4;
-    --accent2: #8b5cf6;
+    --accent2: #38bdf8;
     --success: #10b981;
     --warning: #f59e0b;
     --danger: #ef4444;
@@ -84,6 +84,7 @@ body {
     font-size: 1.1rem;
 }
 .nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
 .nav-links a {
     text-decoration: none;
     color: var(--gray-600);
@@ -298,7 +299,7 @@ body {
     left: -10%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
     border-radius: 50%;
 }
 .hero-inner {
@@ -507,7 +508,7 @@ body {
     width: 24px;
     height: 24px;
     border-radius: 6px;
-    background: linear-gradient(135deg, var(--primary), #8b5cf6);
+    background: linear-gradient(135deg, var(--primary), var(--accent2));
     color: #fff;
     display: flex;
     align-items: center;
@@ -1148,13 +1149,13 @@ body {
     background: rgba(15, 23, 42, 0.55);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(139, 92, 246, 0.35); /* glowing purple outline */
+    border: 1px solid rgba(56, 189, 248, 0.35); /* glowing sky-blue outline */
     border-radius: 32px;
     padding: 48px;
     max-width: 720px;
     margin: 0 auto;
     text-align: center;
-    box-shadow: 0 30px 60px -15px rgba(0,0,0,0.5), 0 0 40px rgba(139, 92, 246, 0.25);
+    box-shadow: 0 30px 60px -15px rgba(0,0,0,0.5), 0 0 40px rgba(56, 189, 248, 0.25);
 }
 .pricing-card h3 {
     font-size: 1.6rem;
@@ -1165,7 +1166,7 @@ body {
 }
 .pricing-promo-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #ec4899, #8b5cf6); /* pink-purple gradient */
+    background: linear-gradient(135deg, var(--primary), var(--accent2)); /* blue-sky gradient */
     color: #fff;
     font-size: 0.82rem;
     font-weight: 800;
@@ -1271,12 +1272,12 @@ body {
 }
 .feature-icon.blue { background: #eff6ff; color: var(--primary); }
 .feature-icon.green { background: #ecfdf5; color: var(--success); }
-.feature-icon.purple { background: #f5f3ff; color: var(--accent2); }
+.feature-icon.purple { background: #e0f2fe; color: var(--accent2); }
 .feature-icon.orange { background: #fffbeb; color: var(--warning); }
 .feature-icon.cyan { background: #ecfeff; color: var(--accent); }
 .feature-icon.pink { background: #fdf2f8; color: #ec4899; }
 .feature-icon.red { background: #fef2f2; color: var(--danger); }
-.feature-icon.indigo { background: #eef2ff; color: #4f46e5; }
+.feature-icon.indigo { background: #e0f2fe; color: var(--primary); }
 .feature-icon.teal { background: #f0fdfa; color: #14b8a6; }
 .feature-icon.amber { background: #fffbeb; color: #d97706; }
 .feature-icon.emerald { background: #ecfdf5; color: #059669; }
@@ -2340,6 +2341,18 @@ body {
         max-height: calc(100vh - 72px);
         overflow-y: auto;
     }
+    .nav-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        margin-top: 8px !important;
+    }
+    .nav-actions .btn {
+        flex: 1 !important;
+        max-width: 180px !important;
+    }
     .nav-dropdown-menu {
         position: static;
         opacity: 1;
@@ -2424,7 +2437,7 @@ body {
 
 /* ========== BETA BANNER ========== */
 .beta-banner {
-    background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent2) 100%);
     color: #fff;
     padding: 12px 16px;
     position: relative;
@@ -2753,7 +2766,7 @@ body.has-beta-banner .hero {
     width: 20px;
     height: 20px;
     border-radius: 4px;
-    background: linear-gradient(135deg, var(--primary), #8b5cf6);
+    background: linear-gradient(135deg, var(--primary), var(--accent2));
     color: #fff;
     display: flex;
     align-items: center;
@@ -2925,7 +2938,7 @@ body.has-beta-banner .hero {
 }
 
 .ops-chart-bar-wrapper:nth-child(even) .ops-chart-bar {
-    background: linear-gradient(to top, #7c3aed, #a78bfa);
+    background: linear-gradient(to top, var(--accent), var(--accent2));
 }
 
 .ops-chart-label {
@@ -3105,3 +3118,8 @@ body.has-beta-banner .hero {
     }
 }
 
+@media (min-width: 480px) {
+    .hero-buttons, .product-hero-buttons {
+        flex-wrap: nowrap !important;
+    }
+}

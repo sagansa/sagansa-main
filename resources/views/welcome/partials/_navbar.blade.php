@@ -40,9 +40,10 @@
             
             <a href="/cara-perhitungan">Harga</a>
             <a href="/qna">Q&A</a>
-            <a href="/download">Download</a>
-            <a href="https://ops.sagansa.id/id/auth/login" target="_blank" class="btn btn-secondary" style="padding: 10px 24px; font-size: 0.9rem;">Login</a>
-            <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">Mulai Gratis</a>
+            <div class="nav-actions">
+                <a href="https://ops.sagansa.id/id/auth/login" target="_blank" class="btn btn-secondary" style="padding: 10px 24px; font-size: 0.9rem; margin: 0;">Login</a>
+                <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.9rem; margin: 0;">Mulai Gratis</a>
+            </div>
         </div>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
             <span></span>

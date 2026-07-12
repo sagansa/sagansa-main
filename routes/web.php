@@ -47,9 +47,7 @@ Route::get('/qna', function () {
     return view('qna');
 });
 
-Route::get('/download', function () {
-    return view('download');
-});
+
 
 // Beta Tester (pendaftaran email untuk Google Play Closed Testing)
 Route::get('/beta', [BetaTesterController::class, 'create'])->name('beta.create');

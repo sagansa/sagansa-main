@@ -70,11 +70,11 @@
     .billing-section-badge.green { background: #ecfdf5; color: var(--success); }
     .billing-section-badge.orange { background: #fffbeb; color: var(--warning); }
     .billing-section-badge.red { background: #fef2f2; color: var(--danger); }
-    .billing-section-badge.purple { background: #f5f3ff; color: var(--accent2); }
+    .billing-section-badge.purple { background: #e0f2fe; color: var(--accent2); }
     .billing-section h2 { font-size: 1.8rem; font-weight: 800; color: var(--gray-900); margin-bottom: 12px; line-height: 1.25; }
     .billing-section-intro { font-size: 1.05rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 32px; }
     .billing-formula-card {
-        background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+        background: linear-gradient(135deg, #eff6ff, #e0f2fe);
         border: 1px solid var(--gray-200); border-radius: 20px; padding: 32px; margin-bottom: 40px;
     }
     .billing-formula-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary); margin-bottom: 12px; }
@@ -88,11 +88,11 @@
     .billing-example-tag { font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 100px; }
     .billing-example-tag.green { background: #ecfdf5; color: var(--success); }
     .billing-example-tag.blue { background: #eff6ff; color: var(--primary); }
-    .billing-example-tag.purple { background: #f5f3ff; color: var(--accent2); }
+    .billing-example-tag.purple { background: #e0f2fe; color: var(--accent2); }
     .billing-example-body { padding: 20px; }
     .billing-example-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 0.9rem; color: var(--gray-600); }
     .billing-example-row strong { color: var(--gray-800); }
-    .billing-example-row.result { background: linear-gradient(135deg, #eff6ff, #f5f3ff); margin: 0 -20px; padding: 12px 20px; font-size: 1rem; }
+    .billing-example-row.result { background: linear-gradient(135deg, #eff6ff, #e0f2fe); margin: 0 -20px; padding: 12px 20px; font-size: 1rem; }
     .billing-example-row.result strong { color: var(--primary); font-size: 1.15rem; }
     .billing-example-row .strikethrough { text-decoration: line-through; color: var(--gray-400); }
     .billing-example-divider { height: 1px; background: var(--gray-100); margin: 8px 0; }
