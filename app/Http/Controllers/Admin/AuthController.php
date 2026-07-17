@@ -28,7 +28,7 @@ class AuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (!Auth('admin')->attempt($credentials, $request->boolean('remember'))) {
+        if (!auth('admin')->attempt($credentials, $request->boolean('remember'))) {
             throw ValidationException::withMessages([
                 'email' => __('Kredensial tidak cocok dengan data kami.'),
             ]);
@@ -37,7 +37,7 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         /** @var Admin $admin */
-        $admin = Auth('admin')->user();
+        $admin = auth('admin')->user();
         $admin->update(['last_login_at' => now()]);
 
         return redirect()->intended(route(config('admin.redirect_after_login')));

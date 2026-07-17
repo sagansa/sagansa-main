@@ -4,16 +4,12 @@
 @section('description', $post->meta_description ?? $post->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($post->content), 160))
 @section('canonical', 'https://sagansa.id/blog/' . $post->slug)
 @section('og_type', 'article')
-@if($post->thumbnail_url)
-@section('head')
-<meta property="og:image" content="{{ $post->thumbnail_url }}">
-@endsection
-@endif
+@section('og_image', $post->thumbnail_url)
 
 @section('jsonld')
 <script type="application/ld+json">
 {
-    "@context": "https://schema.org",
+    "@@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
         {

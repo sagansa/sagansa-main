@@ -25,16 +25,19 @@ class Setting extends Model
     ];
 
     /**
-     * Dapatkan nilai setting berdasarkan key.
+     * Dapatkan nilai setting berdasarkan key (di-cache per-key agar tidak query DB tiap render).
      */
     public static function get(string $key, ?string $default = null): ?string
     {
-        $setting = self::find($key);
-        return $setting ? $setting->value : $default;
+        return \Illuminate\Support\Facades\Cache::remember(
+            'setting.' . $key,
+            now()->addHour(),
+            fn () => (self::find($key))?->value ?? $default
+        );
     }
 
     /**
-     * Simpan atau update nilai setting.
+     * Simpan atau update nilai setting (dan invalidasi cache key terkait).
      */
     public static function set(string $key, ?string $value): void
     {
@@ -42,5 +45,7 @@ class Setting extends Model
             ['key' => $key],
             ['value' => $value]
         );
+
+        \Illuminate\Support\Facades\Cache::forget('setting.' . $key);
     }
 }

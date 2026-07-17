@@ -7,6 +7,11 @@
 @section('og_title', 'Sagansa POS & Attendance — Aplikasi Kasir & Absensi Karyawan Terintegrasi')
 @section('og_description', 'Aplikasi kasir & absensi karyawan terintegrasi untuk UMKM. Pakai dulu, bayar kemudian. Gratis untuk penggunaan awal, serta operasional kasir & absensi tetap berjalan normal meskipun pembayaran terlambat.')
 
+{{-- Three.js hanya dibutuhkan di halaman welcome (3D interaktif) --}}
+@section('head')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+@endsection
+
 @section('jsonld')
     <!-- JSON-LD: FAQPage (GEO/AEO — Answer Engine Optimization) -->
     @verbatim

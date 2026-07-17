@@ -34,7 +34,12 @@ return new class extends Migration
                 $table->index('is_featured');
                 $table->index('published_at');
                 $table->index('category_id');
-                $table->fullText(['title', 'excerpt', 'content']);
+
+                // FULLTEXT hanya didukung MySQL; abaikan di sqlite (testing).
+                if (config('database.connections.mysql_main.driver') === 'mysql'
+                    || config('database.default') === 'mysql') {
+                    $table->fullText(['title', 'excerpt', 'content']);
+                }
             });
         }
     }

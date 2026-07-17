@@ -10,6 +10,17 @@
 @section('canonical', 'https://sagansa.id/blog')
 @endif
 
+@if(isset($posts) && $posts->currentPage() > 1)
+@section('head')
+<link rel="prev" href="https://sagansa.id/blog?page={{ $posts->currentPage() - 1 }}">
+@endsection
+@endif
+@if(isset($posts) && $posts->hasMorePages())
+@section('head')
+<link rel="next" href="https://sagansa.id/blog?page={{ $posts->currentPage() + 1 }}">
+@endsection
+@endif
+
 @section('head')
 <style>
     .blog-hero {

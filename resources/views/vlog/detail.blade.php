@@ -4,6 +4,36 @@
 @section('description', \Illuminate\Support\Str::limit($video->description ?? 'Video dari Sagansa POS — tips dan tutorial bisnis.', 160))
 @section('canonical', 'https://sagansa.id/vlog/' . $video->slug)
 @section('og_type', 'article')
+@section('og_image', $video->thumbnail_url)
+
+@section('jsonld')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Beranda",
+            "item": "https://sagansa.id/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Vlog",
+            "item": "https://sagansa.id/vlog"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ $video->title }}",
+            "item": "https://sagansa.id/vlog/{{ $video->slug }}"
+        }
+    ]
+}
+</script>
+@endsection
 
 @section('head')
 <style>

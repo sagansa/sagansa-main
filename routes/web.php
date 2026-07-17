@@ -48,6 +48,10 @@ Route::get('/qna', function () {
     return view('qna');
 });
 
+Route::get('/download', function () {
+    return view('download');
+});
+
 // SEO: Sitemap XML
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
@@ -79,7 +83,7 @@ Route::prefix('vlog')->group(function () {
 Route::prefix('marketing-admin')->name('admin.')->group(function () {
     // Auth (di luar middleware admin)
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+    Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,60')->name('login.post');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Area admin (terproteksi)

@@ -24,10 +24,10 @@
     <meta name="twitter:description" content="@yield('og_description', 'Sagansa POS — Aplikasi Kasir Modern & Terintegrasi Attendance untuk UMKM Indonesia')">
 
     <!-- Default share image (di-override per-halaman bila ada, mis. thumbnail blog) -->
-    <meta property="og:image" content="@yield('og_image', 'https://sagansa.id/images/sagansa-logo.png')">
+    <meta property="og:image" content="@yield('og_image', 'https://sagansa.id/images/warung_kaki_lima.png')">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta name="twitter:image" content="@yield('og_image', 'https://sagansa.id/images/sagansa-logo.png')">
+    <meta name="twitter:image" content="@yield('og_image', 'https://sagansa.id/images/warung_kaki_lima.png')">
 
     <!-- Favicon SVG -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/sagansa-logo.svg') }}?v=2">
@@ -151,10 +151,7 @@
 
 @include('welcome.partials._wa-float')
 
-    <!-- Three.js CDN (untuk 3D interaktif) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-@vite(['resources/js/welcome.js'])
+    @vite(['resources/js/welcome.js'])
 
 @yield('scripts')
 
