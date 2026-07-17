@@ -74,7 +74,22 @@ class BlogController extends Controller
      */
     public function byCategory(string $slug)
     {
-        return $this->index(request()->merge(['kategori' => $slug]));
+        $category = BlogCategory::where('slug', $slug)->firstOrFail();
+        $request = request()->merge(['kategori' => $slug]);
+
+        $query = BlogPost::published()
+            ->with('category')
+            ->latest('published_at');
+
+        if ($category) {
+            $query->where('category_id', $category->id);
+        }
+
+        $posts = $query->paginate(9);
+        $categories = $this->categories();
+        $featured = $this->featuredPosts();
+
+        return view('blog.index', compact('posts', 'categories', 'featured', 'category'));
     }
 
     /**

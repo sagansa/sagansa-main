@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
+@if(isset($category) && $category)
+@section('title', 'Blog Kategori ' . $category->name . ' — Sagansa')
+@section('description', 'Kumpulan artikel kategori ' . $category->name . ' dari Sagansa: tips, insight, dan panduan bisnis F&B, UMKM, kasir, dan POS untuk pemilik bisnis di Indonesia.')
+@section('canonical', 'https://sagansa.id/blog/kategori/' . $category->slug)
+@else
 @section('title', 'Blog Sagansa — Tips & Insight Bisnis F&B, UMKM, dan POS')
 @section('description', 'Artikel terbaru seputar bisnis F&B, manajemen UMKM, tips kasir, integrasi QRIS & online order, dan insight industri untuk pemilik bisnis di Indonesia.')
 @section('canonical', 'https://sagansa.id/blog')
+@endif
 
 @section('head')
 <style>

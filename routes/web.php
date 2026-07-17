@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BetaTesterController;
 use App\Http\Controllers\VlogController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,9 @@ Route::get('/produk/hardware', function () {
 Route::get('/qna', function () {
     return view('qna');
 });
+
+// SEO: Sitemap XML
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 
 

@@ -23,6 +23,12 @@
     <meta name="twitter:title" content="@yield('og_title', 'Sagansa POS — Aplikasi Kasir Modern & Terintegrasi Attendance')">
     <meta name="twitter:description" content="@yield('og_description', 'Sagansa POS — Aplikasi Kasir Modern & Terintegrasi Attendance untuk UMKM Indonesia')">
 
+    <!-- Default share image (di-override per-halaman bila ada, mis. thumbnail blog) -->
+    <meta property="og:image" content="@yield('og_image', 'https://sagansa.id/images/sagansa-logo.png')">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:image" content="@yield('og_image', 'https://sagansa.id/images/sagansa-logo.png')">
+
     <!-- Favicon SVG -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/sagansa-logo.svg') }}?v=2">
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('images/sagansa-logo.svg') }}?v=2">

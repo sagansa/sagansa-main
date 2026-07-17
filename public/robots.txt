@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Disallow: /marketing-admin
+
+Sitemap: https://sagansa.id/sitemap.xml
