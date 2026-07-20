@@ -7,31 +7,34 @@
 @section('og_image', $video->thumbnail_url)
 
 @section('jsonld')
+@php
+    $vlogBreadcrumbs = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'name' => 'Beranda',
+                'item' => 'https://sagansa.id/',
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'name' => 'Vlog',
+                'item' => 'https://sagansa.id/vlog',
+            ],
+            [
+                '@type' => 'ListItem',
+                'position' => 3,
+                'name' => $video->title,
+                'item' => 'https://sagansa.id/vlog/' . $video->slug,
+            ],
+        ],
+    ];
+@endphp
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-        {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Beranda",
-            "item": "https://sagansa.id/"
-        },
-        {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Vlog",
-            "item": "https://sagansa.id/vlog"
-        },
-        {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "{{ $video->title }}",
-            "item": "https://sagansa.id/vlog/{{ $video->slug }}"
-        }
-    ]
-}
+{!! json_encode($vlogBreadcrumbs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>
 @endsection
 

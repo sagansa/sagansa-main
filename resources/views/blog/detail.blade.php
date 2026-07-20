@@ -7,43 +7,50 @@
 @section('og_image', $post->thumbnail_url)
 
 @section('jsonld')
+@php
+    $breadcrumbs = [
+        [
+            '@type' => 'ListItem',
+            'position' => 1,
+            'name' => 'Beranda',
+            'item' => 'https://sagansa.id/',
+        ],
+        [
+            '@type' => 'ListItem',
+            'position' => 2,
+            'name' => 'Blog',
+            'item' => 'https://sagansa.id/blog',
+        ],
+    ];
+    if ($post->category) {
+        $breadcrumbs[] = [
+            '@type' => 'ListItem',
+            'position' => 3,
+            'name' => $post->category->name,
+            'item' => 'https://sagansa.id/blog/kategori/' . $post->category->slug,
+        ];
+        $breadcrumbs[] = [
+            '@type' => 'ListItem',
+            'position' => 4,
+            'name' => $post->title,
+            'item' => 'https://sagansa.id/blog/' . $post->slug,
+        ];
+    } else {
+        $breadcrumbs[] = [
+            '@type' => 'ListItem',
+            'position' => 3,
+            'name' => $post->title,
+            'item' => 'https://sagansa.id/blog/' . $post->slug,
+        ];
+    }
+    $breadcrumbData = [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => $breadcrumbs,
+    ];
+@endphp
 <script type="application/ld+json">
-{
-    "@@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-        {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Beranda",
-            "item": "https://sagansa.id/"
-        },
-        {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Blog",
-            "item": "https://sagansa.id/blog"
-        }@if($post->category),
-        {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "{{ $post->category->name }}",
-            "item": "https://sagansa.id/blog/kategori/{{ $post->category->slug }}"
-        },
-        {
-            "@type": "ListItem",
-            "position": 4,
-            "name": "{{ $post->title }}",
-            "item": "https://sagansa.id/blog/{{ $post->slug }}"
-        }@else,
-        {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "{{ $post->title }}",
-            "item": "https://sagansa.id/blog/{{ $post->slug }}"
-        }@endif
-    ]
-}
+{!! json_encode($breadcrumbData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
 </script>
 @endsection
 

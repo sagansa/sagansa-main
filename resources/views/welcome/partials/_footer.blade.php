@@ -3,6 +3,11 @@
     $playStoreAtt = \App\Models\Setting::get('google_play_attendance_link');
     $appStorePos = \App\Models\Setting::get('app_store_pos_link');
     $appStoreAtt = \App\Models\Setting::get('app_store_attendance_link');
+
+    $targetPos = !empty($playStorePos) ? 'target="_blank"' : 'onclick="alert(\'Sagansa POS untuk Android segera hadir di Google Play!\'); return false;"';
+    $targetAtt = !empty($playStoreAtt) ? 'target="_blank"' : 'onclick="alert(\'Sagansa Attendance untuk Android segera hadir di Google Play!\'); return false;"';
+    $targetAppPos = !empty($appStorePos) ? 'target="_blank"' : 'onclick="alert(\'Sagansa POS untuk iOS segera hadir di App Store!\'); return false;"';
+    $targetAppAtt = !empty($appStoreAtt) ? 'target="_blank"' : 'onclick="alert(\'Sagansa Attendance untuk iOS segera hadir di App Store!\'); return false;"';
 @endphp
 <footer class="footer">
     <div class="footer-top">
@@ -48,12 +53,12 @@
                 <h4>Download Play Store</h4>
                 <ul>
                     <li>
-                        <a href="{{ $playStorePos ?: '#' }}" @if($playStorePos) target="_blank" @else onclick="alert('Sagansa POS untuk Android segera hadir di Google Play!'); return false;" @endif class="footer-app-link">
+                        <a href="{{ $playStorePos ?: '#' }}" {!! $targetPos !!} class="footer-app-link">
                             Sagansa POS
                         </a>
                     </li>
                     <li>
-                        <a href="{{ $playStoreAtt ?: '#' }}" @if($playStoreAtt) target="_blank" @else onclick="alert('Sagansa Attendance untuk Android segera hadir di Google Play!'); return false;" @endif class="footer-app-link">
+                        <a href="{{ $playStoreAtt ?: '#' }}" {!! $targetAtt !!} class="footer-app-link">
                             Sagansa Attendance
                         </a>
                     </li>
@@ -61,12 +66,12 @@
                 <h4 style="margin-top:16px;">Download App Store</h4>
                 <ul>
                     <li>
-                        <a href="{{ $appStorePos ?: '#' }}" @if($appStorePos) target="_blank" @else onclick="alert('Sagansa POS untuk iOS segera hadir di App Store!'); return false;" @endif class="footer-app-link">
+                        <a href="{{ $appStorePos ?: '#' }}" {!! $targetAppPos !!} class="footer-app-link">
                             Sagansa POS
                         </a>
                     </li>
                     <li>
-                        <a href="{{ $appStoreAtt ?: '#' }}" @if($appStoreAtt) target="_blank" @else onclick="alert('Sagansa Attendance untuk iOS segera hadir di App Store!'); return false;" @endif class="footer-app-link">
+                        <a href="{{ $appStoreAtt ?: '#' }}" {!! $targetAppAtt !!} class="footer-app-link">
                             Sagansa Attendance
                         </a>
                     </li>

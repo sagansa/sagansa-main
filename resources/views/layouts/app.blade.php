@@ -39,96 +39,101 @@
 
     @vite(['resources/css/welcome.css'])
 
+    @php
+        $appPromoPriceVal = (int) \App\Models\Setting::get('price_promo', '59000');
+        $appPromoPriceFormatted = 'Rp' . number_format($appPromoPriceVal, 0, ',', '.');
+
+        $softwareAppSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'SoftwareApplication',
+            'name' => 'Sagansa POS',
+            'applicationCategory' => 'BusinessApplication',
+            'operatingSystem' => 'Web',
+            'description' => 'Sagansa POS & Attendance adalah aplikasi kasir & absensi karyawan terintegrasi untuk UMKM. Aplikasi mobile kasir & absensi gratis selamanya, serta berlangganan terjangkau khusus untuk mengaktifkan akses bagian Panel Web Admin.',
+            'url' => 'https://sagansa.id/',
+            'offers' => [
+                '@type' => 'Offer',
+                'price' => '0',
+                'priceCurrency' => 'IDR',
+                'description' => 'Aplikasi mobile POS & Absensi gratis selamanya. Berlangganan ' . $appPromoPriceFormatted . '/bulan khusus untuk membuka Panel Web Admin.',
+            ],
+            'provider' => [
+                '@type' => 'Organization',
+                'name' => 'PT Sagansa Engineering Indonesia',
+                'url' => 'https://sagansa.id/',
+                'contactPoint' => [
+                    '@type' => 'ContactPoint',
+                    'telephone' => '+62-811-1923-572',
+                    'contactType' => 'sales',
+                    'availableLanguage' => 'Indonesian',
+                ],
+            ],
+            'featureList' => [
+                'QRIS dengan Nominal Otomatis',
+                'Variant & Modification',
+                'Fitur Paket & Bahan Baku',
+                'Manajemen Shift',
+                'Tax & Biaya Layanan',
+                'Refund via Approval',
+                'Jumlah User Tidak Terbatas',
+                'Support Foodcourt',
+                'Pemisahan Channel Online (GoFood, ShopeeFood, GrabFood)',
+                'Terintegrasi Attendance',
+            ],
+        ];
+
+        $organizationSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'name' => 'PT Sagansa Engineering Indonesia',
+            'alternateName' => 'Sagansa',
+            'url' => 'https://sagansa.id/',
+            'logo' => 'https://sagansa.id/logo.png',
+            'description' => 'Perusahaan teknologi Indonesia yang mengembangkan Sagansa POS — aplikasi kasir dan point of sale terintegrasi dengan sistem absensi karyawan untuk UMKM, restoran, cafe, dan foodcourt.',
+            'foundingDate' => '2024',
+            'contactPoint' => [
+                '@type' => 'ContactPoint',
+                'telephone' => '+62-811-1923-572',
+                'contactType' => 'sales',
+                'availableLanguage' => 'Indonesian',
+            ],
+            'sameAs' => [
+                'https://instagram.com/sagansa.id',
+                'https://www.linkedin.com/company/sagansa',
+                'https://www.youtube.com/@sagansa',
+            ],
+        ];
+
+        $websiteSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebSite',
+            'name' => 'Sagansa POS',
+            'url' => 'https://sagansa.id/',
+            'potentialAction' => [
+                '@type' => 'SearchAction',
+                'target' => 'https://sagansa.id/search?q={search_term_string}',
+                'query-input' => 'required name=search_term_string',
+            ],
+            'publisher' => [
+                '@id' => 'https://sagansa.id/#organization',
+            ],
+        ];
+    @endphp
+
     <!-- JSON-LD: SoftwareApplication -->
-    @verbatim
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Sagansa POS",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web",
-        "description": "Sagansa POS & Attendance adalah aplikasi kasir & absensi karyawan terintegrasi untuk UMKM. Aplikasi mobile kasir & absensi gratis selamanya, serta berlangganan terjangkau khusus untuk mengaktifkan akses bagian Panel Web Admin.",
-        "url": "https://sagansa.id/",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "IDR",
-            "description": "Aplikasi mobile POS & Absensi gratis selamanya. Berlangganan Rp{{ number_format((int)\App\Models\Setting::get('price_promo', '59000'), 0, ',', '.') }}/bulan khusus untuk membuka Panel Web Admin."
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "PT Sagansa Engineering Indonesia",
-            "url": "https://sagansa.id/",
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+62-811-1923-572",
-                "contactType": "sales",
-                "availableLanguage": "Indonesian"
-            }
-        },
-        "featureList": [
-            "QRIS dengan Nominal Otomatis",
-            "Variant & Modification",
-            "Fitur Paket & Bahan Baku",
-            "Manajemen Shift",
-            "Tax & Biaya Layanan",
-            "Refund via Approval",
-            "Jumlah User Tidak Terbatas",
-            "Support Foodcourt",
-            "Pemisahan Channel Online (GoFood, ShopeeFood, GrabFood)",
-            "Terintegrasi Attendance"
-        ]
-    }
+    {!! json_encode($softwareAppSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
-    @endverbatim
 
-    <!-- JSON-LD: Organization (GEO/AEO — Entity Building) -->
-    @verbatim
+    <!-- JSON-LD: Organization -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "PT Sagansa Engineering Indonesia",
-        "alternateName": "Sagansa",
-        "url": "https://sagansa.id/",
-        "logo": "https://sagansa.id/logo.png",
-        "description": "Perusahaan teknologi Indonesia yang mengembangkan Sagansa POS — aplikasi kasir dan point of sale terintegrasi dengan sistem absensi karyawan untuk UMKM, restoran, cafe, dan foodcourt.",
-        "foundingDate": "2024",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+62-811-1923-572",
-            "contactType": "sales",
-            "availableLanguage": "Indonesian"
-        },
-        "sameAs": [
-            "https://instagram.com/sagansa.id",
-            "https://www.linkedin.com/company/sagansa",
-            "https://www.youtube.com/@sagansa"
-        ]
-    }
+    {!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
-    @endverbatim
 
-    <!-- JSON-LD: WebSite + SearchAction (GEO/AEO — Knowledge Graph) -->
-    @verbatim
+    <!-- JSON-LD: WebSite + SearchAction -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Sagansa POS",
-        "url": "https://sagansa.id/",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://sagansa.id/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-        },
-        "publisher": {
-            "@id": "https://sagansa.id/#organization"
-        }
-    }
+    {!! json_encode($websiteSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
     </script>
-    @endverbatim
 
     @yield('jsonld')
 
@@ -137,7 +142,7 @@
 <body>
 
 <div class="site-header">
-    @if(Request::is('/') || Request::routeIs('welcome'))
+    @if(request()->is('/'))
         @include('welcome.partials._beta-banner')
     @endif
     @include('welcome.partials._navbar')

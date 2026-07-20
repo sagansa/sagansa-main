@@ -48,21 +48,22 @@ class SeoAndRoutingTest extends TestCase
 
     public function test_blog_show_renders_published_post_with_meta(): void
     {
-        $category = BlogCategory::create([
-            'name' => 'Tips',
-            'slug' => 'tips',
-            'is_active' => true,
-        ]);
+        $category = BlogCategory::firstOrCreate(
+            ['slug' => 'tips-seo-test'],
+            ['name' => 'Tips Test', 'is_active' => true]
+        );
 
-        $post = BlogPost::create([
-            'title' => 'Cara Mengelola Kasir',
-            'slug' => 'cara-mengelola-kasir',
-            'content' => '<p>Konten artikel contoh.</p>',
-            'meta_title' => 'Meta Unik Kasir',
-            'is_published' => true,
-            'published_at' => now(),
-            'category_id' => $category->id,
-        ]);
+        $post = BlogPost::firstOrCreate(
+            ['slug' => 'cara-mengelola-kasir-seo-test'],
+            [
+                'title' => 'Cara Mengelola Kasir',
+                'content' => '<p>Konten artikel contoh.</p>',
+                'meta_title' => 'Meta Unik Kasir',
+                'is_published' => true,
+                'published_at' => now(),
+                'category_id' => $category->id,
+            ]
+        );
 
         $response = $this->get('/blog/' . $post->slug);
 
