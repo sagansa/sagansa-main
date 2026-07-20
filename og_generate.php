@@ -66,8 +66,8 @@ $font = '/System/Library/Fonts/NewYork.ttf';
 if (!file_exists($font)) { $font = '/System/Library/Fonts/Geneva.ttf'; }
 
 $title = 'Sagansa POS & Attendance';
-$sub   = 'Aplikasi Kasir & Absensi Karyawan Terintegrasi';
-$sub2  = 'Pakai dulu, bayar kemudian - untuk UMKM Indonesia';
+$sub   = 'Aplikasi Kasir & Kehadiran Karyawan Gratis Terintegrasi';
+$sub2  = 'Solusi andalan kelola operasional UMKM & bisnis kuliner';
 $badge = 'QRIS  -  Multi-channel  -  Attendance';
 
 if (file_exists($font)) {

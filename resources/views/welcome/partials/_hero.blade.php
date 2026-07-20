@@ -6,11 +6,10 @@
                 POS & Attendance Terintegrasi
             </div>
             <h1>
-                Kelola Bisnis Anda dengan <span class="gradient-text">Satu Platform</span>
+                Aplikasi Kasir dan Kehadiran Karyawan <span class="gradient-text">Gratis Terintegrasi</span>
             </h1>
             <p>
-                Sagansa menggabungkan sistem kasir modern dengan manajemen kehadiran karyawan.
-                <strong>Pakai dulu, bayar kemudian</strong> — gratis untuk penggunaan awal, serta aplikasi kasir & absensi tetap berjalan normal di lapangan meskipun pembayaran tertunda.
+                Sagansa menggabungkan sistem kasir POS modern dengan manajemen absensi kehadiran karyawan 100% gratis di mobile. Kelola transaksi toko dan kehadiran SDM dalam satu platform terpadu.
             </p>
             <div class="hero-buttons">
                 <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary">

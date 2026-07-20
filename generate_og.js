@@ -67,11 +67,11 @@ const svg = `
   </g>
 
   <!-- Headline Utama -->
-  <text x="80" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="900" fill="#ffffff" letter-spacing="-1.5">
-    Aplikasi Kasir &amp; Absensi
+  <text x="80" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="50" font-weight="900" fill="#ffffff" letter-spacing="-1.5">
+    Aplikasi Kasir &amp; Kehadiran
   </text>
-  <text x="80" y="305" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="900" fill="#3b82f6" letter-spacing="-1.5">
-    Karyawan Terintegrasi
+  <text x="80" y="305" font-family="system-ui, -apple-system, sans-serif" font-size="50" font-weight="900" fill="#3b82f6" letter-spacing="-1.5">
+    Karyawan Gratis Terintegrasi
   </text>
 
   <!-- Sub-headline / Copywriting -->
@@ -79,7 +79,7 @@ const svg = `
     Solusi andalan kelola operasional UMKM &amp; bisnis kuliner.
   </text>
   <text x="80" y="415" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="800" fill="#10b981">
-    Pakai Dulu, Bayar Kemudian — Mulai Gratis!
+    100% Gratis Selamanya di Mobile — Mulai Sekarang!
   </text>
 
   <!-- Fitur Tags / Badges -->
