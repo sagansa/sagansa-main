@@ -1,9 +1,12 @@
 @php
+    $priceNormalVal = (int) \App\Models\Setting::get('price_normal', '99000');
     $pricePromoVal = \App\Models\Setting::get('price_promo', '59000');
-    $pricePercentage = \App\Models\Setting::get('price_percentage', '1');
-    $pricePromoFormatted = 'Rp' . number_format((int)$pricePromoVal, 0, ',', '.');
-    $priceAttendanceVal = \App\Models\Setting::get('price_attendance_additional', '2000');
-    $priceAttendanceFormatted = 'Rp' . number_format((int)$priceAttendanceVal, 0, ',', '.');
+    $pricePromoVal = $pricePromoVal !== null && $pricePromoVal !== '' ? (int)$pricePromoVal : null;
+    $priceAttendanceVal = (int) \App\Models\Setting::get('price_attendance_additional', '1500');
+
+    $priceNormalFormatted = 'Rp' . number_format($priceNormalVal, 0, ',', '.');
+    $pricePromoFormatted = $pricePromoVal !== null ? 'Rp' . number_format($pricePromoVal, 0, ',', '.') : $priceNormalFormatted;
+    $priceAttendanceFormatted = 'Rp' . number_format($priceAttendanceVal, 0, ',', '.');
 @endphp
 <div class="qa-item animate-in" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" role="listitem">
     <div class="qa-question" role="heading" aria-level="3" itemprop="name">
@@ -19,38 +22,38 @@
 
 <div class="qa-item animate-in" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" role="listitem">
     <div class="qa-question" role="heading" aria-level="3" itemprop="name">
-        <h3>Bagaimana sistem billing Sagansa bekerja?</h3>
+        <h3>Bagaimana sistem berlangganan Sagansa bekerja?</h3>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
     </div>
     <div class="qa-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
         <div class="qa-answer-inner">
-            <p itemprop="text">Sagansa menggunakan sistem "Pakai dulu, bayar kemudian" — tanpa biaya awal (setup fee). Kami memiliki dua pilihan skema tagihan:<br>
-            • <strong>POS + Attendance</strong>: Dihitung {{ $pricePercentage }}% dari omzet store Anda (maksimal {{ $pricePromoFormatted }}/store/bulan selama promo), dan fitur absensi karyawan (Attendance) <strong>gratis sepuasnya</strong> tanpa batas.<br>
-            • <strong>Attendance Saja</strong>: Gratis untuk 5 karyawan aktif pertama. Mulai karyawan ke-6, hanya dikenakan {{ $priceAttendanceFormatted }} per karyawan aktif per bulan (hanya membayar karyawan yang melakukan absen pada bulan itu).</p>
+            <p itemprop="text">Aplikasi kasir POS dan absensi karyawan di handphone (mobile) dapat digunakan <strong>gratis & bebas 100% selamanya</strong>.<br>
+            • <strong>Mobile POS & Absensi HP</strong>: Gratis selamanya tanpa potongan omzet.<br>
+            • <strong>Panel Web Admin</strong>: Diwajibkan berlangganan ({{ $pricePromoFormatted }}/store/bulan) untuk membuka laporan keuangan & analitik bisnis. Pengelolaan presensi di admin dihitung {{ $priceAttendanceFormatted }} per user aktif presensi per bulan.</p>
         </div>
     </div>
 </div>
 
 <div class="qa-item animate-in" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" role="listitem">
     <div class="qa-question" role="heading" aria-level="3" itemprop="name">
-        <h3>Apakah ada biaya awal atau biaya langganan tetap?</h3>
+        <h3>Apakah ada biaya awal atau biaya setup?</h3>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
     </div>
     <div class="qa-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
         <div class="qa-answer-inner">
-            <p itemprop="text">Tidak ada. Sagansa sepenuhnya gratis untuk dimulai — tanpa biaya setup, tanpa biaya langganan tetap, dan tanpa kontrak. Anda hanya dikenakan tagihan pascabayar (postpaid) berdasarkan penggunaan nyata Anda (POS berdasarkan omzet, atau Attendance-only berdasarkan jumlah karyawan aktif).</p>
+            <p itemprop="text">Tidak ada. Sagansa bebas digunakan di mobile tanpa biaya pendaftaran (setup fee) dan tanpa potongan omzet. Anda hanya membayar biaya berlangganan flat jika ingin membuka akses ke Panel Web Admin.</p>
         </div>
     </div>
 </div>
 
 <div class="qa-item animate-in" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" role="listitem">
     <div class="qa-question" role="heading" aria-level="3" itemprop="name">
-        <h3>Bagaimana jika saya terlambat membayar tagihan? Apakah aplikasi kasir atau absen akan terkunci?</h3>
+        <h3>Bagaimana jika belum berlangganan admin? Apakah aplikasi kasir atau absen akan terkunci?</h3>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
     </div>
     <div class="qa-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
         <div class="qa-answer-inner">
-            <p itemprop="text">Jangan khawatir. Jika Anda terlambat melakukan pembayaran, <strong>aplikasi kasir POS di toko dan aplikasi absensi karyawan di handphone tetap dapat berjalan secara normal tanpa gangguan</strong>. Operasional bisnis Anda tidak akan terhenti. Batasan hanya berlaku pada akses ke dashboard operasional (apps/ops) untuk melihat data historis dan laporan keuangan, yang akan langsung terbuka kembali segera setelah tagihan dilunasi.</p>
+            <p itemprop="text">Jangan khawatir. <strong>Aplikasi kasir POS di toko dan aplikasi absensi karyawan di handphone tetap dapat berjalan secara normal tanpa gangguan</strong>. Operasional bisnis Anda tidak akan terhenti. Batasan hanya berlaku pada akses ke Panel Web Admin (apps/ops) untuk melihat data historis dan laporan keuangan, yang akan langsung terbuka seketika setelah berlangganan diaktifkan.</p>
         </div>
     </div>
 </div>

@@ -20,8 +20,7 @@ class SettingSeeder extends Seeder
             'google_group_link' => 'https://groups.google.com/g/sagansa-beta-testers',
             'price_normal' => '99000',
             'price_promo' => '59000',
-            'price_percentage' => '1',
-            'price_attendance_additional' => '2000',
+            'price_attendance_additional' => '1500',
         ];
 
         foreach ($settings as $key => $value) {

@@ -48,13 +48,13 @@
         "name": "Sagansa POS",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
-        "description": "Sagansa POS & Attendance adalah aplikasi kasir & absensi karyawan terintegrasi untuk UMKM. Pakai dulu, bayar kemudian — gratis biaya awal, tagihan berbasis pemakaian adil, serta operasional tetap berjalan normal saat terlambat bayar.",
+        "description": "Sagansa POS & Attendance adalah aplikasi kasir & absensi karyawan terintegrasi untuk UMKM. Aplikasi mobile kasir & absensi gratis selamanya, serta berlangganan terjangkau khusus untuk mengaktifkan akses bagian Panel Web Admin.",
         "url": "https://sagansa.id/",
         "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "IDR",
-            "description": "Gratis tanpa biaya awal. Tagihan bersahabat untuk UMKM (POS maks Rp{{ number_format((int)\App\Models\Setting::get('price_promo', '59000'), 0, ',', '.') }}/bulan + Attendance gratis; atau Attendance-only mulai dari Rp{{ number_format((int)\App\Models\Setting::get('price_attendance_additional', '2000'), 0, ',', '.') }}/karyawan aktif setelah 5 karyawan gratis)."
+            "description": "Aplikasi mobile POS & Absensi gratis selamanya. Berlangganan Rp{{ number_format((int)\App\Models\Setting::get('price_promo', '59000'), 0, ',', '.') }}/bulan khusus untuk membuka Panel Web Admin."
         },
         "provider": {
             "@type": "Organization",

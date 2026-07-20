@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('title', 'Sagansa POS & Attendance — Aplikasi Kasir & Absensi Karyawan Terintegrasi')
-@section('description', 'Sagansa POS & Attendance adalah aplikasi kasir dan absensi karyawan terintegrasi untuk UMKM. Pakai dulu, bayar kemudian. Gratis untuk penggunaan awal, dan aplikasi kasir & absensi tetap berjalan normal di lapangan meskipun pembayaran terlambat.')
+@section('description', 'Sagansa POS & Attendance adalah aplikasi kasir dan absensi karyawan terintegrasi untuk UMKM. Aplikasi mobile kasir & absensi gratis selamanya, serta berlangganan terjangkau khusus untuk membuka bagian Panel Web Admin.')
 @section('keywords', 'POS, point of sale, aplikasi kasir, kasir online, QRIS, absensi karyawan, attendance, GoFood, ShopeeFood, GrabFood, restoran, cafe, UMKM, Indonesia, Sagansa, sagansa pos, software kasir, sistem kasir, aplikasi restoran, foodcourt, manajemen shift')
 @section('canonical', 'https://sagansa.id/')
 @section('og_title', 'Sagansa POS & Attendance — Aplikasi Kasir & Absensi Karyawan Terintegrasi')
-@section('og_description', 'Aplikasi kasir & absensi karyawan terintegrasi untuk UMKM. Pakai dulu, bayar kemudian. Gratis untuk penggunaan awal, serta operasional kasir & absensi tetap berjalan normal meskipun pembayaran terlambat.')
+@section('og_description', 'Aplikasi kasir & absensi karyawan mobile gratis selamanya untuk UMKM. Berlangganan terjangkau khusus untuk membuka bagian Panel Web Admin.')
 
 {{-- Three.js hanya dibutuhkan di halaman welcome (3D interaktif) --}}
 @section('head')
@@ -30,18 +30,18 @@
             },
             {
                 "@type": "Question",
-                "name": "Bagaimana sistem billing Sagansa bekerja?",
+                "name": "Bagaimana sistem berlangganan Sagansa bekerja?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Sagansa menggunakan sistem 'Pakai dulu, bayar kemudian' — tanpa biaya awal (setup fee). Jika Anda menggunakan POS, fitur absensi karyawan (Attendance) otomatis gratis 100% (hanya dikenakan tagihan POS {{ \App\Models\Setting::get('price_percentage', '1') }}% omzet, maks Rp{{ number_format((int)\App\Models\Setting::get('price_promo', '59000'), 0, ',', '.') }}/bulan). Jika hanya menggunakan Attendance, 5 karyawan aktif pertama gratis, dan karyawan aktif ke-6 dst dikenakan biaya Rp{{ number_format((int)\App\Models\Setting::get('price_attendance_additional', '2000'), 0, ',', '.') }}/karyawan/bulan."
+                    "text": "Aplikasi kasir POS dan absensi karyawan di handphone (mobile) gratis selamanya tanpa potongan omzet. Berlangganan khusus diperlukan untuk membuka bagian Panel Web Admin (apps/ops), dengan biaya Rp59.000/store/bulan dan Rp1.500/user/bulan untuk pengelolaan fitur presensi di admin."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Apakah ada biaya awal atau biaya langganan tetap?",
+                "name": "Apakah ada biaya awal atau biaya setup?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Tidak ada. Sagansa sepenuhnya gratis untuk dimulai — tanpa biaya setup, tanpa biaya langganan tetap, dan tanpa kontrak. Tagihan hanya berdasarkan penggunaan nyata (POS berdasarkan omzet, atau Attendance-only mulai dari karyawan ke-6 yang aktif)."
+                    "text": "Tidak ada. Sagansa bebas digunakan di mobile tanpa biaya pendaftaran (setup fee) dan tanpa potongan omzet. Berlangganan flat hanya diperlukan untuk membuka bagian Panel Web Admin."
                 }
             },
             {

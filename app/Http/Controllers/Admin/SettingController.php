@@ -21,8 +21,7 @@ class SettingController extends Controller
             'google_group_link' => Setting::get('google_group_link', 'https://groups.google.com/g/sagansa-beta-testers'),
             'price_normal' => Setting::get('price_normal', '99000'),
             'price_promo' => Setting::get('price_promo', '59000'),
-            'price_percentage' => Setting::get('price_percentage', '1'),
-            'price_attendance_additional' => Setting::get('price_attendance_additional', '2000'),
+            'price_attendance_additional' => Setting::get('price_attendance_additional', '1500'),
         ];
 
         return view('admin.settings.index', compact('settings'));
@@ -62,7 +61,6 @@ class SettingController extends Controller
             'google_group_link' => ['nullable', 'url', 'max:500'],
             'price_normal' => ['required', 'numeric', 'min:0'],
             'price_promo' => ['nullable', 'numeric', 'min:0'],
-            'price_percentage' => ['required', 'numeric', 'min:0', 'max:100'],
             'price_attendance_additional' => ['required', 'numeric', 'min:0'],
         ]);
 

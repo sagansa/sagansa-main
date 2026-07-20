@@ -65,46 +65,37 @@
 
                     <!-- Pricing Settings -->
                     <div class="form-group full" style="border-top: 1px solid var(--gray-200); padding-top: 20px; margin-top: 10px;">
-                        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--gray-900);">💰 Pengaturan Harga Kasir (POS)</h3>
+                        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--gray-900);">💰 Pengaturan Biaya Berlangganan Akses Admin</h3>
                     </div>
 
                     <div class="form-group">
-                        <label for="price_normal">Harga Normal / Dasar (Rupiah)</label>
+                        <label for="price_normal">Biaya Berlangganan Normal (Rupiah)</label>
                         <input type="number" id="price_normal" name="price_normal" required
                                value="{{ old('price_normal', $settings['price_normal']) }}" 
                                class="form-control" placeholder="99000">
-                        <div class="hint">Harga standar bulanan per store. Contoh: 99000.</div>
+                        <div class="hint">Tarif langganan bulanan standar untuk membuka bagian/panel admin. Contoh: 99000.</div>
                         @error('price_normal') <div style="color: var(--danger); font-size: 0.8rem; margin-top: 6px;">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="price_promo">Harga Rencana / Promo (Rupiah)</label>
+                        <label for="price_promo">Biaya Berlangganan Promo (Rupiah)</label>
                         <input type="number" id="price_promo" name="price_promo"
                                value="{{ old('price_promo', $settings['price_promo']) }}" 
                                class="form-control" placeholder="59000">
-                        <div class="hint">Harga promo aktif. Jika di bawah harga normal, harga normal akan dicoret otomatis.</div>
+                        <div class="hint">Tarif promo aktif untuk membuka panel admin. Jika di bawah harga normal, harga normal akan dicoret otomatis.</div>
                         @error('price_promo') <div style="color: var(--danger); font-size: 0.8rem; margin-top: 6px;">{{ $message }}</div> @enderror
                     </div>
 
-                    <div class="form-group">
-                        <label for="price_percentage">Persentase Omzet (%)</label>
-                        <input type="number" step="0.1" id="price_percentage" name="price_percentage" required
-                               value="{{ old('price_percentage', $settings['price_percentage']) }}" 
-                               class="form-control" placeholder="1">
-                        <div class="hint">Persentase billing dari omzet store (e.g. 1 untuk 1%).</div>
-                        @error('price_percentage') <div style="color: var(--danger); font-size: 0.8rem; margin-top: 6px;">{{ $message }}</div> @enderror
-                    </div>
-
                     <div class="form-group full" style="border-top: 1px solid var(--gray-200); padding-top: 20px; margin-top: 10px;">
-                        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--gray-900);">📋 Pengaturan Harga Absensi (Attendance)</h3>
+                        <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--gray-900);">📋 Pengaturan Akses Modul Presensi di Admin</h3>
                     </div>
 
                     <div class="form-group">
-                        <label for="price_attendance_additional">Tarif per Karyawan Tambahan (Rupiah)</label>
+                        <label for="price_attendance_additional">Tarif Fitur Presensi Admin per User Aktif (Rupiah)</label>
                         <input type="number" id="price_attendance_additional" name="price_attendance_additional" required
                                value="{{ old('price_attendance_additional', $settings['price_attendance_additional']) }}" 
-                               class="form-control" placeholder="2000">
-                        <div class="hint">Tarif bulanan per karyawan aktif mulai dari karyawan ke-6. Contoh: 2000.</div>
+                               class="form-control" placeholder="1500">
+                        <div class="hint">Tarif bulanan untuk akses/kelola modul presensi di admin, dihitung per user (karyawan) yang aktif melakukan presensi. Contoh: 1500.</div>
                         @error('price_attendance_additional') <div style="color: var(--danger); font-size: 0.8rem; margin-top: 6px;">{{ $message }}</div> @enderror
                     </div>
                 </div>

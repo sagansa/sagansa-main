@@ -2,26 +2,21 @@
     $priceNormalVal = (int) \App\Models\Setting::get('price_normal', '99000');
     $pricePromoVal = \App\Models\Setting::get('price_promo', '59000');
     $pricePromoVal = $pricePromoVal !== null && $pricePromoVal !== '' ? (int)$pricePromoVal : null;
-    $pricePercentage = \App\Models\Setting::get('price_percentage', '1');
-    $priceAttendanceVal = (int) \App\Models\Setting::get('price_attendance_additional', '2000');
+    $priceAttendanceVal = (int) \App\Models\Setting::get('price_attendance_additional', '1500');
 
     $isPromoActive = $pricePromoVal !== null && $pricePromoVal < $priceNormalVal;
     $priceNormalFormatted = 'Rp' . number_format($priceNormalVal, 0, ',', '.');
     $pricePromoFormatted = $pricePromoVal !== null ? 'Rp' . number_format($pricePromoVal, 0, ',', '.') : '';
     $priceAttendanceFormatted = 'Rp' . number_format($priceAttendanceVal, 0, ',', '.');
-    
-    // Hitung persentase hemat
-    $savingPercent = 0;
-    if ($isPromoActive && $priceNormalVal > 0) {
-        $savingPercent = round((($priceNormalVal - $pricePromoVal) / $priceNormalVal) * 100);
-    }
+    $priceEffective = $pricePromoVal ?? $priceNormalVal;
+    $priceEffectiveFormatted = 'Rp' . number_format($priceEffective, 0, ',', '.');
 @endphp
 <section class="section pricing-highlight" id="pricing">
     <div class="section-inner">
         <div class="section-header">
-            <div class="section-label">💰 Model Pembayaran Revolusioner</div>
-            <h2 class="section-title">Pakai Dulu, Bayar Kemudian</h2>
-            <p class="section-desc">Tidak ada biaya awal. Tidak ada biaya langganan tetap. Skema pembayaran postpaid yang dirancang adil dan bersahabat untuk bisnis UMKM.</p>
+            <div class="section-label">💰 Model Berlangganan Transparan</div>
+            <h2 class="section-title">Aplikasi Mobile Gratis, Berlangganan Khusus Admin</h2>
+            <p class="section-desc">Kasir POS dan Absensi karyawan di handphone gratis & bebas selamanya. Berlangganan hanya diperlukan untuk membuka bagian Panel Admin (Web Ops).</p>
         </div>
 
         <style>
@@ -148,35 +143,30 @@
         </style>
 
         <div class="pricing-grid">
-            <!-- Paket 1: POS + Attendance Saja Sampingan -->
+            <!-- Paket 1: POS & Attendance Mobile Gratis -->
             <div class="pricing-card-custom featured">
-                <div class="pricing-promo-badge-custom">🔥 Paket Kasir Utama + Absensi</div>
-                <h3>POS + Attendance Gratis</h3>
-                <p class="pricing-desc">Jika Anda menggunakan POS untuk transaksi di warung/toko Anda, maka seluruh fitur absensi karyawan otomatis <strong>gratis 100%</strong> tanpa batas.</p>
+                <div class="pricing-promo-badge-custom">🔥 100% Gratis Selamanya</div>
+                <h3>Mobile POS & Absensi HP</h3>
+                <p class="pricing-desc">Aplikasi kasir POS di toko dan absensi karyawan di HP bebas digunakan <strong>gratis selamanya</strong> tanpa biaya pendaftaran & tanpa potongan omzet.</p>
                 <div class="pricing-amount-custom">
-                    @if($isPromoActive)
-                        <span class="price-original-custom">{{ $priceNormalFormatted }}</span>
-                        <span class="price-glow-custom">{{ $pricePromoFormatted }}</span>
-                    @else
-                        <span class="price-glow-custom">{{ $priceNormalFormatted }}</span>
-                    @endif
-                    <span class="price-unit-custom">/ store / bulan (maks)</span>
+                    <span class="price-glow-custom">Gratis</span>
+                    <span class="price-unit-custom">(Rp0 / selamanya)</span>
                 </div>
                 <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: -16px; margin-bottom: 20px;">
-                    Dihitung {{ $pricePercentage }}% dari omzet store Anda. Semakin kecil omzet, semakin kecil tagihan!
+                    Operasional kasir & absensi karyawan di toko dijamin selalu berjalan 100% normal.
                 </p>
                 <ul class="pricing-features-list">
                     <li class="pricing-feature-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        Aplikasi Kasir POS lengkap di mobile/tablet
+                        Aplikasi Kasir POS lengkap di HP/Tablet Android & iOS
                     </li>
                     <li class="pricing-feature-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        <strong>Gratis modul Attendance (Absensi) karyawan sepuasnya</strong>
+                        Absensi karyawan (GPS & foto selfie) bebas sepuasnya
                     </li>
                     <li class="pricing-feature-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        Tanpa biaya pendaftaran (setup fee) & biaya langganan tetap
+                        Tanpa biaya pendaftaran, tanpa potongan omzet
                     </li>
                     <li class="pricing-feature-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
@@ -184,50 +174,55 @@
                     </li>
                     <li class="pricing-feature-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        Stok otomatis, kelola multi-tenant/foodcourt, & jumlah user bebas
+                        Cetak struk kasir, manajemen stok lokal, & multi-channel
                     </li>
                 </ul>
                 <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-primary btn-action">
-                    Mulai POS & Absensi Gratis
+                    Mulai Pakai Gratis Kapan Saja
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
 
-            <!-- Paket 2: Attendance Saja -->
+            <!-- Paket 2: Berlangganan Panel Admin Web Ops -->
             <div class="pricing-card-custom">
-                <h3 style="margin-top: 0;">Attendance Saja</h3>
-                <p class="pricing-desc">Gunakan sistem absensi modern (GPS & selfie) untuk mencatat kehadiran karyawan tanpa menggunakan aplikasi kasir POS.</p>
+                <h3 style="margin-top: 0;">Akses Panel Web Admin</h3>
+                <p class="pricing-desc">Membuka bagian admin (Web Ops) untuk melihat laporan keuangan bulanan, analisa penjualan, & mengunduh rekap data.</p>
                 <div class="pricing-amount-custom">
-                    <span class="price-glow-custom" style="background: linear-gradient(135deg, #fff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Gratis*</span>
-                    <span class="price-unit-custom">untuk 5 karyawan aktif pertama</span>
+                    @if($isPromoActive)
+                        <span class="price-original-custom">{{ $priceNormalFormatted }}</span>
+                        <span class="price-glow-custom" style="background: linear-gradient(135deg, #fff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{ $pricePromoFormatted }}</span>
+                    @else
+                        <span class="price-glow-custom" style="background: linear-gradient(135deg, #fff, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{ $priceNormalFormatted }}</span>
+                    @endif
+                    <span class="price-unit-custom">/ store / bulan</span>
                 </div>
                 <p style="font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: -16px; margin-bottom: 20px;">
-                    Mulai karyawan ke-6 hanya dikenakan <strong>{{ $priceAttendanceFormatted }} / karyawan aktif / bulan</strong>.
+                    Fitur presensi admin dihitung <strong>{{ $priceAttendanceFormatted }} / user aktif presensi / bulan</strong>.
                 </p>
                 <ul class="pricing-features-list">
                     <li class="pricing-feature-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        Absensi deteksi lokasi (GPS) anti kecurangan & foto selfie
+                        Akses dashboard web operasional (apps/ops) lengkap
                     </li>
                     <li class="pricing-feature-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        <strong>Hanya bayar karyawan aktif</strong> (tidak masuk kerja = Rp0)
+                        Laporan keuangan, grafik omzet, & analisis penjualan
                     </li>
                     <li class="pricing-feature-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        Kelola shift kerja, data terlambat, & lembur otomatis
+                        Kelola modul presensi & ekspor laporan Excel ({{ $priceAttendanceFormatted }}/user)
                     </li>
                     <li class="pricing-feature-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        Export laporan absensi bulanan instan ke Excel
+                        Manajemen katalog produk, inventaris stok, & supplier
                     </li>
                     <li class="pricing-feature-item">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                        Aplikasi absensi mobile & panel operasional (ops dashboard)
+                        Dukungan prioritas & manajemen multi-store terpusat
                     </li>
                 </ul>
                 <a href="https://ops.sagansa.id/id/auth/register" target="_blank" class="btn btn-secondary btn-action" style="background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.25);">
-                    Mulai Absensi Karyawan Saja
+                    Buka Akses Admin
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
@@ -235,7 +230,7 @@
 
         <div style="text-align: center; margin-top: 36px;">
             <a href="/cara-perhitungan" class="btn btn-white" style="background: transparent; color: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.2); display: inline-flex;">
-                💡 Lihat Cara Perhitungan Lengkap &amp; Alur Pembayaran
+                💡 Lihat Rincian Berlangganan &amp; Akses Admin
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         </div>

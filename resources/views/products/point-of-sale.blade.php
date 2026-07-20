@@ -186,9 +186,9 @@
 <div class="product-section">
     <div class="product-section-inner" style="text-align: center;">
         <div class="product-section-header">
-            <div class="section-label green">💰 Harga</div>
-            <h2>Pakai Dulu, Bayar Kemudian</h2>
-            <p>Tidak ada biaya awal, tidak ada biaya langganan tetap. Tagihan hanya berdasarkan 1% omzet (maksimal Rp59.000 per store/bulan). Dengan menggunakan POS, fitur absensi karyawan (Attendance) otomatis <strong>gratis sepuasnya</strong> tanpa biaya tambahan.</p>
+            <div class="section-label green">💰 Model Berlangganan</div>
+            <h2>Aplikasi POS Mobile Gratis Selamanya</h2>
+            <p>Aplikasi kasir POS di toko dan absensi karyawan di handphone dapat digunakan <strong>gratis selamanya</strong> tanpa potongan omzet. Berlangganan hanya diperlukan jika Anda ingin membuka akses ke <strong>Panel Web Admin</strong>.</p>
         </div>
         <a href="/cara-perhitungan" class="btn btn-secondary">
             Lihat Cara Perhitungan
