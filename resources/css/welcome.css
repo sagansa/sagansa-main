@@ -326,7 +326,7 @@ body {
 }
 .hero-badge svg { width: 16px; height: 16px; }
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 2.6rem;
     font-weight: 900;
     line-height: 1.1;
     color: var(--gray-900);
@@ -340,7 +340,7 @@ body {
     background-clip: text;
 }
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     color: var(--gray-600);
     margin-bottom: 36px;
     max-width: 540px;
@@ -2330,7 +2330,7 @@ body {
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
-    .hero h1 { font-size: 2.8rem; }
+    .hero h1 { font-size: 2.1rem; }
     .hero-inner { flex-direction: column; text-align: center; }
     .hero p { margin-left: auto; margin-right: auto; }
     .hero-buttons { justify-content: center; }
